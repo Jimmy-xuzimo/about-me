@@ -1,32 +1,29 @@
-# 徐子墨 - 个人主页
+# 个人主页
 
-[![访问我的主页](https://img.shields.io/badge/访问-个人主页-brightgreen?style=for-the-badge&logo=firefox)](http://www.xuzimo.top:8080/)
-[![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-black?style=for-the-badge&logo=github)](https://github.com/Jimmy-xuzimo/about-me)
+一个现代、响应式的个人介绍网站，采用深色主题设计，融合液态光斑动画效果与AI时代个人品牌展示。
 
-✨ 一名热爱技术与艺术的AI开发者，探索前沿科技与创意表达的无限可能。
+## 🌟 项目特色
 
-## 🌐 访问方式
+- **沉浸式视觉体验**：动态液态光斑背景，营造科技感氛围
+- **响应式设计**：完美适配桌面、平板、手机等各种设备
+- **交互动画**：滚动淡入、鼠标跟随、渐变文字动画
+- **模块化内容结构**：清晰展示个人简介、兴趣、作品与联系方式
+- **AI开发者定位**：专为AI时代创作者打造的专业形象展示
 
-- **公网访问**：http://www.xuzimo.top:8080/
-- **IPv6直连**：http://[2401:ce00:c92a:ff90:204d:fb4c:4098:2f82]:8080/
+## 🎨 设计亮点
+
+- **深色主题**：减少视觉疲劳，突出内容层次
+- **橙色主色调**：活力与创造力的象征
+- **液态光斑动画**：使用CSS滤镜与混合模式实现
+- **卡片式布局**：现代且信息密度适中
+- **Font Awesome图标**：提升视觉识别度
 
 ## 🛠️ 技术栈
 
-- **前端**：HTML5, CSS3, JavaScript
-- **部署**：Nginx, Docker
-- **网络**：IPv6公网直连
-- **CI/CD**：GitHub → NAS 自动同步
+- **前端**：纯HTML5 + CSS3 + JavaScript
+- **样式**：CSS变量、Flexbox、Grid布局
+- **动画**：CSS Animation + JavaScript事件监听
+- **图标**：Font Awesome 6.5.1 CDN
+- **字体**：系统原生字体栈（Segoe UI、苹方等）
 
-## 📁 项目结构
-├── index.html         # 主页面
-├── assets/
-│   ├── css/           # 样式文件
-│   ├── js/            # 交互脚本
-│   └── images/        # 个人照片、项目截图
-└── README.md          # 项目说明
-
-## 🚀 部署指南
-
-### 1. 克隆仓库到NAS
-```bash
-git clone https://github.com/Jimmy-xuzimo/about-me.git /vol1/1000/docker/openresty-manager/conf/www/xuzimo/about-me
+由徐子墨创建 | 探索AI与创意的无限可能
