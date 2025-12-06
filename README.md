@@ -18,3 +18,15 @@
 - **CI/CD**：GitHub → NAS 自动同步
 
 ## 📁 项目结构
+├── index.html         # 主页面
+├── assets/
+│   ├── css/           # 样式文件
+│   ├── js/            # 交互脚本
+│   └── images/        # 个人照片、项目截图
+└── README.md          # 项目说明
+
+## 🚀 部署指南
+
+### 1. 克隆仓库到NAS
+```bash
+git clone https://github.com/Jimmy-xuzimo/about-me.git /vol1/1000/docker/openresty-manager/conf/www/xuzimo/about-me
