@@ -1,6 +1,7 @@
 # 个人主页
 
 一个现代、响应式的个人介绍网站，采用深色主题设计，融合液态光斑动画效果与AI时代个人品牌展示。
+<img width="4400" height="2722" alt="image" src="https://github.com/user-attachments/assets/d37c526f-7df8-473e-8210-938b758f94ac" />
 
 ## 🌟 项目特色
 
