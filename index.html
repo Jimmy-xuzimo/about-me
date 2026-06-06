@@ -3,405 +3,662 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-  <title>徐子墨 | Zimo Xu - 个人主页</title>
+  <title>徐子墨 | Zimo Xu - 个人档案</title>
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <style>
     :root {
-      --bg-dark: #050505;
-      --bg-card: rgba(26, 26, 30, 0.5);
-      --accent: #ff7b00;
-      --accent-glow: rgba(255, 123, 0, 0.2);
-      --text-main: #ffffff;
-      --text-dim: #dcdcdc;
-      --glass-border: rgba(255, 255, 255, 0.08);
+      /* 专业科幻配色 */
+      --bg-dark: #030407;
+      --bg-card: rgba(12, 14, 20, 0.7);
+      --bg-card-dark: rgba(18, 20, 28, 0.85); /* 右侧面板深色背景 */
+      --accent: #66e8ff; /* 对应图中的冰青色 */
+      --accent-dim: rgba(102, 232, 255, 0.15);
+      --text-main: #f0f4f8;
+      --text-dim: #9ba4b5;
+      --glass-border: rgba(102, 232, 255, 0.15);
       --ease-out: cubic-bezier(0.19, 1, 0.22, 1);
     }
 
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
+    /* 平滑滚动核心 */
+    html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       background-color: var(--bg-dark);
-      font-family: "SF Pro Display", "PingFang SC", "Segoe UI", sans-serif;
+      font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       color: var(--text-main);
       overflow-x: hidden;
-      opacity: 0;
-      animation: fadeInPage 1s var(--ease-out) forwards;
     }
 
-    @keyframes fadeInPage {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* 增强版科幻网格背景 */
+    body::before {
+      content: ""; position: fixed; inset: 0; z-index: -2;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px; pointer-events: none;
     }
-
-    /* 极速语言切换 */
-    [data-lang="zh"] .lang-en { display: none !important; }
-    [data-lang="en"] .lang-zh { display: none !important; }
-    
-    .lang-zh, .lang-en {
-      animation: textReveal 0.4s var(--ease-out);
-    }
-    @keyframes textReveal {
-      from { opacity: 0; transform: translateY(5px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* 背景装饰 */
-    .bg-visuals {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
+    body::after {
+      content: ""; position: fixed; inset: 0; z-index: -1;
+      background: radial-gradient(circle at 50% 0%, rgba(102, 232, 255, 0.08) 0%, transparent 60%);
       pointer-events: none;
     }
-    .blob {
-      position: absolute;
-      width: 60vw; height: 60vw;
-      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-      filter: blur(80px);
-      animation: float 20s infinite alternate;
-    }
 
-    @keyframes float {
-      from { transform: translate(-10%, -10%); }
-      to { transform: translate(10%, 10%); }
-    }
+    /* 极速双语切换 */
+    [data-lang="zh"] .lang-en { display: none !important; }
+    [data-lang="en"] .lang-zh { display: none !important; }
+    .lang-zh, .lang-en { animation: textReveal 0.4s var(--ease-out); }
+    @keyframes textReveal { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* 顶部切换按钮 */
+    /* 顶部导航按钮 */
     .lang-toggle {
-      position: fixed;
-      top: 25px; right: 25px;
-      z-index: 1000;
-      padding: 10px 20px;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      border: 1px solid var(--glass-border);
+      position: fixed; top: clamp(15px, 4vw, 25px); right: clamp(15px, 4vw, 25px); z-index: 1000;
+      padding: 8px 20px; background: rgba(102, 232, 255, 0.05);
+      backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border); border-radius: 100px;
+      color: var(--accent); font-size: 13px; font-weight: bold;
+      cursor: pointer; transition: all 0.3s;
+    }
+    .lang-toggle:hover { background: var(--accent); color: #000; }
+
+    /* 容器控制 */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 clamp(15px, 4vw, 30px); }
+
+    /* =========================================
+       全新 Hero Section (首屏重构)
+       ========================================= */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 60px;
+      padding-top: 60px; /* 给导航留空间 */
+    }
+
+    /* 左侧文字区 */
+    .hero-left {
+      flex: 1;
+      max-width: 580px;
+      opacity: 0;
+      animation: slideInLeft 1s var(--ease-out) forwards;
+    }
+    
+    .hero-top-tag {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(102, 232, 255, 0.08);
+      border: 1px solid rgba(102, 232, 255, 0.2);
       border-radius: 100px;
-      color: #fff;
-      font-size: 13px;
+      color: var(--accent);
+      font-size: 0.85rem;
       font-weight: 600;
-      cursor: pointer;
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+    }
+
+    .hero-title {
+      font-size: clamp(3.5rem, 8vw, 6rem);
+      font-weight: 900;
+      margin: 0 0 20px 0;
+      color: #fff;
+      line-height: 1.1;
+      letter-spacing: 2px;
+      /* 选配：轻微文字发光 */
+      text-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+    }
+
+    .hero-roles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+    
+    .role-tag {
+      padding: 6px 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 100px;
+      color: #e2e8f0;
+      font-size: 0.9rem;
+    }
+
+    .hero-desc {
+      font-size: clamp(1rem, 2vw, 1.1rem);
+      color: var(--text-dim);
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      padding: 14px 32px;
+      background: var(--accent);
+      color: #050505;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s;
+      box-shadow: 0 0 25px rgba(102, 232, 255, 0.4);
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 0 35px rgba(102, 232, 255, 0.6); }
+
+    .btn-secondary {
+      padding: 14px 32px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       transition: all 0.3s;
     }
-    .lang-toggle:hover { background: var(--accent); border-color: var(--accent); transform: scale(1.05); }
+    .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); transform: translateY(-3px); }
 
-    .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
 
-    /* Hero Section */
-    .hero {
-      height: 90vh;
+    /* 右侧 Bento 控制面板 */
+    .hero-right {
+      flex: 1;
+      max-width: 500px;
+      opacity: 0;
+      animation: slideInRight 1s var(--ease-out) 0.2s forwards;
+      /* 增加轻微透视感 */
+      perspective: 1000px;
+    }
+
+    .stats-card {
+      background: linear-gradient(145deg, rgba(20, 24, 34, 0.9) 0%, rgba(10, 12, 16, 0.95) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 35px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+      backdrop-filter: blur(20px);
+      /* 悬浮呼吸动画 */
+      animation: floatBreath 6s ease-in-out infinite;
+    }
+
+    .stats-tags {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
+      gap: 10px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
     }
-    .hero-title {
-      font-size: clamp(2.5rem, 8vw, 5rem);
+    .stats-tags span {
+      padding: 4px 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+    .stats-tags span.highlight { color: var(--accent); background: var(--accent-dim); border-color: rgba(102, 232, 255, 0.2); }
+
+    .stats-heading {
+      font-size: 1.6rem;
       font-weight: 800;
-      margin-bottom: 15px;
-      background: linear-gradient(to bottom, #fff, #999);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: #fff;
+      margin: 0 0 15px 0;
     }
-    .hero-subtitle {
-      font-size: clamp(1rem, 3vw, 1.5rem);
-      color: var(--accent);
-      letter-spacing: 5px;
-      margin-bottom: 30px;
-      text-transform: uppercase;
-    }
-    .hero-tagline {
-      max-width: 650px;
-      font-size: 1.1rem;
+
+    .stats-sub {
+      font-size: 0.95rem;
       color: var(--text-dim);
       line-height: 1.6;
+      margin-bottom: 30px;
     }
 
-    /* Glass Card */
-    .glass-card {
-      background: var(--bg-card);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--glass-border);
-      border-radius: 24px;
-      transition: all 0.4s var(--ease-out);
-      overflow: hidden;
-    }
-    .glass-card:hover { transform: translateY(-5px); border-color: rgba(255,123,0,0.3); }
-
-    .section { padding: 80px 0; opacity: 0; transform: translateY(30px); transition: all 0.8s var(--ease-out); }
-    .section.visible { opacity: 1; transform: translateY(0); }
-    .section-title { font-size: 2rem; margin-bottom: 40px; display: flex; align-items: center; gap: 12px; }
-
-    /* 技能模块重构 - 移动端更紧凑 */
-    .skills-grid {
+    .stats-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
-    .skill-item {
-      padding: 30px;
-      display: flex;
-      flex-direction: column;
       gap: 15px;
     }
-    .skill-icon {
-      width: 48px; height: 48px;
-      background: rgba(255, 123, 0, 0.1);
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--accent); font-size: 1.4rem;
-    }
 
-    /* 作品集 Bento */
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
-    .portfolio-wide { grid-column: span 2; }
-    
-    .video-container {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      background: #000;
-    }
-    .video-container iframe { width: 100%; height: 100%; border: none; }
-
-    .card-content { padding: 30px; position: relative; }
-    .watermark {
-      position: absolute; right: -15px; bottom: -15px;
-      font-size: 8rem; color: rgba(255,255,255,0.03);
-      transform: rotate(-15deg); pointer-events: none;
-    }
-
-    .repo-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(255,123,0,0.1); padding: 5px 12px;
-      border-radius: 100px; color: var(--accent); font-size: 13px; font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    /* 联系方式 */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
-    }
-    .contact-item {
+    .stat-box {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      border-radius: 16px;
       padding: 20px;
-      display: flex; align-items: center; gap: 15px;
-      text-decoration: none; color: inherit;
+      transition: all 0.3s;
+    }
+    .stat-box:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(102, 232, 255, 0.2);
+      transform: translateY(-2px);
+    }
+    
+    .stat-num {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
 
-    /* 响应式适配 */
-    @media (max-width: 768px) {
-      .skills-grid { grid-template-columns: 1fr; gap: 12px; }
-      .skill-item { padding: 20px; flex-direction: row; align-items: center; }
-      .skill-icon { width: 40px; height: 40px; font-size: 1.1rem; flex-shrink: 0; }
-      .portfolio-grid { grid-template-columns: 1fr; }
-      .portfolio-wide { grid-column: span 1; }
+    /* 进场与悬浮动画 */
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-40px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(40px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes floatBreath {
+      0% { transform: translateY(0px); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+      50% { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(102,232,255,0.1); }
+      100% { transform: translateY(0px); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+    }
+
+    /* 移动端适配 (竖向排列) */
+    @media (max-width: 992px) {
+      .hero {
+        flex-direction: column;
+        justify-content: center;
+        text-align: left; /* 保持左对齐比较现代 */
+        padding-top: 100px;
+        gap: 40px;
+      }
+      .hero-left, .hero-right {
+        max-width: 100%;
+        width: 100%;
+      }
+      .stats-card {
+        animation: none; /* 移动端关闭悬浮动画防止性能问题 */
+      }
+    }
+    @media (max-width: 480px) {
       .hero-title { font-size: 3.2rem; }
-      .section-title { font-size: 1.6rem; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } /* 保持2列但缩小间距 */
+      .stat-box { padding: 15px; }
+      .stat-num { font-size: 1.6rem; }
+      .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+    }
+
+    /* =========================================
+       通用 Section 样式 (保持原样)
+       ========================================= */
+    .glass-card-normal {
+      background: var(--bg-card); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border); border-radius: 24px;
+      transition: transform 0.3s, border-color 0.3s; overflow: hidden; position: relative;
+    }
+    .glass-card-normal:hover { transform: translateY(-3px); border-color: rgba(102, 232, 255, 0.4); }
+
+    .card-bg-img { position: absolute; inset: 0; z-index: 0; opacity: 0.25; background-size: cover; background-position: center; transition: opacity 0.4s; }
+    .glass-card-normal:hover .card-bg-img { opacity: 0.4; }
+    .card-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(to top, rgba(3,4,7,0.9) 10%, rgba(3,4,7,0.4) 100%); }
+    .card-content { position: relative; z-index: 2; padding: clamp(20px, 4vw, 35px); }
+
+    .section { padding: clamp(60px, 10vh, 100px) 0; position: relative; }
+    .section-title { font-size: clamp(1.8rem, 4vw, 2.2rem); margin-bottom: 40px; display: flex; align-items: center; gap: 12px; font-weight: 800; }
+
+    .section-bg-icon { position: absolute; font-size: clamp(15rem, 30vw, 30rem); color: rgba(255,255,255,0.04); z-index: -1; pointer-events: none; top: 10%; }
+    .bg-icon-code { right: -5%; transform: rotate(10deg); }
+    .bg-icon-photo { left: -5%; transform: rotate(-10deg); }
+
+    .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 20px; }
+    .bento-wide { grid-column: 1 / -1; }
+    
+    .badge-group { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; }
+    .badge { padding: 4px 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; font-size: 12px; font-weight: 600; }
+    .badge.cyan { background: var(--accent-dim); color: var(--accent); border-color: rgba(102, 232, 255, 0.3); }
+
+    .timeline { position: relative; padding-left: 20px; margin-top: 15px; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 5px; bottom: 5px; width: 2px; background: linear-gradient(to bottom, var(--accent), transparent); }
+    .timeline-item { position: relative; margin-bottom: 25px; }
+    .timeline-item::before { content: ''; position: absolute; left: -26px; top: 5px; width: 14px; height: 14px; border-radius: 50%; background: var(--bg-dark); border: 2px solid var(--accent); transition: 0.3s; }
+    .timeline-item:hover::before { background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+    .tl-date { color: var(--accent); font-family: monospace; font-weight: 700; margin-bottom: 4px; font-size: 1.1rem; }
+
+    .video-container { width: 100%; aspect-ratio: 16 / 9; background: #000; position: relative; border-bottom: 1px solid var(--glass-border); }
+    .video-container iframe { width: 100%; height: 100%; border: none; position: absolute; inset: 0; }
+
+    .tech-category { margin-bottom: 20px; }
+    .tech-category:last-child { margin-bottom: 0; }
+    .tech-title { font-size: 0.9rem; color: var(--text-dim); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 15px; }
+    .contact-item { padding: 25px; display: flex; flex-direction: column; align-items: center; text-align: center; text-decoration: none; color: inherit; }
+    .contact-icon { font-size: 1.8rem; color: var(--accent); margin-bottom: 10px; }
+
+    @media (max-width: 1024px) { .section-bg-icon { opacity: 0.02; } }
+    @media (max-width: 360px) {
+      .container { padding: 0 10px; } 
+      .badge { font-size: 10px; padding: 4px 8px; }
+      .card-content { padding: 15px; }
+      .timeline { padding-left: 15px; }
+      .timeline-item::before { left: -21px; width: 10px; height: 10px; }
+      .glass-card-normal { border-radius: 16px; }
     }
   </style>
 </head>
 <body data-lang="zh">
 
-  <div class="bg-visuals">
-    <div class="blob"></div>
-  </div>
-
   <button class="lang-toggle" onclick="toggleLang()" id="lang-btn">EN</button>
 
+  <!-- 全新重构的 Hero Section -->
   <header class="hero container">
-    <h1 class="hero-title">
-      <span class="lang-zh">Hi, I'm 徐子墨</span>
-      <span class="lang-en">Hi, I'm Zimo Xu</span>
-    </h1>
-    <p class="hero-subtitle">
-      <span class="lang-zh">AI 开发者 | 摄影师 | 高三学生</span>
-      <span class="lang-en">AI Developer | Photographer | Senior Student</span>
-    </p>
-    <p class="hero-tagline">
-      <span class="lang-zh">从零基础到开源贡献者，运用 AI 重塑开发范式，探索前沿技术与视觉艺术的无限融合。</span>
-      <span class="lang-en">From beginner to open-source contributor, leveraging AI to reshape development paradigms, exploring the infinite fusion of technology and art.</span>
-    </p>
+    
+    <!-- 左侧：文字与行为按钮 -->
+    <div class="hero-left">
+      <div class="hero-top-tag">
+        <span class="lang-zh">AI × 全栈开发 × 视觉创造</span>
+        <span class="lang-en">AI × Full-Stack × Visual Arts</span>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="lang-zh">徐子墨</span>
+        <span class="lang-en">Zimo Xu</span>
+      </h1>
+
+      <div class="hero-roles">
+        <span class="role-tag"><span class="lang-zh">高三学生</span><span class="lang-en">High Schooler</span></span>
+        <span class="role-tag"><span class="lang-zh">AI 开发者</span><span class="lang-en">AI Developer</span></span>
+        <span class="role-tag"><span class="lang-zh">签约摄影师</span><span class="lang-en">Photographer</span></span>
+      </div>
+
+      <p class="hero-desc">
+        <span class="lang-zh">坚信技术服务于创造力。通过大语言模型重构开发方式，用镜头记录真实光影，致力于将硬核极客技术与温暖美学融合。</span>
+        <span class="lang-en">Believing tech empowers human creativity. Refactoring dev via LLMs, capturing true light with lens. Dedicated to blending hardcore geek tech with warm aesthetics.</span>
+      </p>
+
+      <div class="hero-actions">
+        <a href="#about" class="btn-primary">
+          <i class="fas fa-arrow-down"></i> <span class="lang-zh">开始探索</span><span class="lang-en">Explore</span>
+        </a>
+        <a href="https://github.com/Jimmy-xuzimo" target="_blank" class="btn-secondary">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+      </div>
+    </div>
+
+    <!-- 右侧：Bento 数据控制面板 -->
+    <div class="hero-right">
+      <div class="stats-card">
+        <div class="stats-tags">
+          <span class="highlight">Vibe Coding</span>
+          <span>React</span>
+          <span>TypeScript</span>
+        </div>
+        
+        <h3 class="stats-heading">
+          <span class="lang-zh">构建未来感数字作品</span>
+          <span class="lang-en">Build Futuristic Digital Works</span>
+        </h3>
+        
+        <p class="stats-sub">
+          <span class="lang-zh">热爱 AI、前端设计、摄影与视觉叙事，专注于创造具有科技感与情绪表达的数字体验。</span>
+          <span class="lang-en">Passionate about AI, frontend, photography & storytelling. Focusing on digital experiences with tech and emotion.</span>
+        </p>
+
+        <!-- 数据矩阵 (完美提炼你的四大核心指标) -->
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-num">225+</div>
+            <div class="stat-label">GitHub Commits</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">37k+</div>
+            <div class="stat-label">Open Source Stars</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">12k+</div>
+            <div class="stat-label">Photo Views</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">2026</div>
+            <div class="stat-label">Graduation</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </header>
 
+  <!-- 主体内容 (以下全部保留之前的设计，仅修改class名为 glass-card-normal 以防样式冲突) -->
   <main class="container">
     
-    <!-- 关于我 -->
-    <section class="section">
-      <h2 class="section-title">👋 <span class="lang-zh">关于我</span><span class="lang-en">About Me</span></h2>
-      <div class="glass-card card-content" style="line-height: 1.8; color: #eee; font-size: 1.05rem;">
-        <p>
-          <span class="lang-zh">我叫徐子墨，目前是一名来自中国浙江杭州的高三学生，对技术开发与视觉创造充满无限热情。</span>
-          <span class="lang-en">My name is Zimo Xu, currently a senior high school student from Hangzhou, Zhejiang, China, filled with infinite passion for technical development and visual creation.</span>
-        </p>
-        <p>
-          <span class="lang-zh">作为一名 AI 时代的学习者，我在 2025 年从零基础踏入了 Vibe Coding（基于语境的自然语言编程）的世界。现在的我擅长利用大模型（LLMs）辅助进行全栈开发，是 OpenClaw 开源项目的开发者之一。</span>
-          <span class="lang-en">As a learner in the AI era, I started from scratch in 2025 and entered the world of Vibe Coding. Now I excel at leveraging large language models (LLMs) for full-stack development and am one of the developers of the OpenClaw open-source project.</span>
-        </p>
-        <p style="margin-bottom: 0;">
-          <span class="lang-zh">我相信技术的力量最终在于服务人类的创造力。无论是折腾个人 NAS 服务器、开发代码，还是拍摄短片、航拍、创作音乐可视化视频与摄影，我始终热衷于探索如何将硬核的极客技术与充满温度的美学艺术相结合，创造出更有生命力的作品。</span>
-          <span class="lang-en">I believe the ultimate power of technology lies in serving human creativity. Whether managing personal NAS servers, developing code, shooting short films, aerial photography, or creating music visualization, I am always passionate about combining geek technology with aesthetic art.</span>
-        </p>
-      </div>
-    </section>
-
-    <!-- 爱好与技能 -->
-    <section class="section">
-      <h2 class="section-title">✨ <span class="lang-zh">爱好与技能</span><span class="lang-en">Interests & Skills</span></h2>
-      <div class="skills-grid">
-        <div class="glass-card skill-item">
-          <div class="skill-icon"><i class="fas fa-camera"></i></div>
-          <div>
-            <h3 style="margin:0 0 5px 0;"><span class="lang-zh">摄影与航拍</span><span class="lang-en">Photography & Aerial</span></h3>
-            <p style="font-size:0.9rem; color:var(--text-dim); margin:0;">
-              <span class="lang-zh">热爱摄影与无人机航拍，用镜头记录地面与天空的壮丽景色，探索视觉美学。</span>
-              <span class="lang-en">Capturing magnificent scenery from ground and sky, exploring visual aesthetics.</span>
-            </p>
-          </div>
-        </div>
-        <div class="glass-card skill-item">
-          <div class="skill-icon"><i class="fas fa-film"></i></div>
-          <div>
-            <h3 style="margin:0 0 5px 0;"><span class="lang-zh">摄影艺术</span><span class="lang-en">Photography Art</span></h3>
-            <p style="font-size:0.9rem; color:var(--text-dim); margin:0;">
-              <span class="lang-zh">专注于人文纪实与风景摄影，用镜头捕捉生活中的真实瞬间与情感故事。</span>
-              <span class="lang-en">Focusing on documentary and landscape photography, capturing authentic moments.</span>
-            </p>
-          </div>
-        </div>
-        <div class="glass-card skill-item">
-          <div class="skill-icon"><i class="fas fa-wave-square"></i></div>
-          <div>
-            <h3 style="margin:0 0 5px 0;"><span class="lang-zh">音乐与可视化</span><span class="lang-en">Music & Visualization</span></h3>
-            <p style="font-size:0.9rem; color:var(--text-dim); margin:0;">
-              <span class="lang-zh">热爱各类音乐。不仅作为听众，更尝试将音乐律动转化为视觉特效。</span>
-              <span class="lang-en">Transforming musical rhythms into visual effects, creating music visualization.</span>
-            </p>
-          </div>
-        </div>
-        <div class="glass-card skill-item">
-          <div class="skill-icon"><i class="fas fa-code"></i></div>
-          <div>
-            <h3 style="margin:0 0 5px 0;"><span class="lang-zh">Vibe Coding</span><span class="lang-en">Vibe Coding</span></h3>
-            <p style="font-size:0.9rem; color:var(--text-dim); margin:0;">
-              <span class="lang-zh">整合大模型，坚信"自然语言即代码"。能够极速将抽象概念落地为应用。</span>
-              <span class="lang-en">Integrating LLMs, believing "natural language is code", building apps rapidly.</span>
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 作品集 -->
-    <section class="section">
-      <h2 class="section-title">📸 <span class="lang-zh">作品与项目</span><span class="lang-en">Portfolio</span></h2>
-      <div class="portfolio-grid">
+    <!-- 个人档案与时间轴 -->
+    <section class="section" id="about">
+      <h2 class="section-title"><i class="fas fa-fingerprint"></i> <span class="lang-zh">个人档案</span><span class="lang-en">Profile</span></h2>
+      <div class="bento-grid">
         
-        <!-- OpenClaw -->
-        <a href="https://github.com/openclaw/openclaw" target="_blank" class="glass-card portfolio-wide" style="text-decoration:none; color:inherit;">
-          <div style="height:150px; background:linear-gradient(to right, #111, #222); display:flex; align-items:center; justify-content:center;">
-             <img src="https://github.com/openclaw.png" style="height:60px; border-radius:12px;" alt="OpenClaw">
-          </div>
+        <div class="glass-card-normal card-content">
+            <div class="badge-group">
+                <span class="badge"><i class="fas fa-map-marker-alt"></i> 浙江·杭州</span>
+                <span class="badge"><i class="fas fa-school"></i> 浙江大学附属中学</span>
+            </div>
+            <h3 style="font-size: 1.5rem; margin-top: 10px;"><span class="lang-zh">关于我</span><span class="lang-en">About Me</span></h3>
+            <p style="color: var(--text-dim); line-height: 1.8;">
+              <span class="lang-zh">我是一名来自杭州的高三学生，对技术开发与视觉创造充满热情。2025 年，我从零基础踏入了 Vibe Coding（自然语言编程）的世界。作为一名 AI 时代的学习者，我擅长利用大语言模型辅助全栈开发。无论是开发应用、折腾个人 NAS、还是航拍创作，我始终热衷于创造有生命力的数字作品。</span>
+              <span class="lang-en">A senior high school student from Hangzhou, passionate about tech and visuals. Started Vibe Coding from scratch in 2025. Excels at using LLMs for full-stack dev. Whether coding apps, configuring NAS, or shooting aerials, I love creating dynamic digital works.</span>
+            </p>
+        </div>
+
+        <div class="glass-card-normal card-content">
+            <h3 style="margin-top: 0; font-size: 1.5rem;"><i class="fas fa-history" style="color:var(--accent);"></i> <span class="lang-zh">成长时间轴</span><span class="lang-en">Timeline</span></h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="tl-date">2008 / 2020 / 2023</div>
+                    <div style="font-size: 0.95rem; color:var(--text-dim);"><span class="lang-zh">出生 / 小学毕业 / 初中毕业。</span><span class="lang-en">Born / Primary / Middle school graduation.</span></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="tl-date">2025.01</div>
+                    <div style="font-size: 0.95rem; color:var(--text-dim);"><span class="lang-zh">接触 Vibe Coding，踏入 AI 开发领域。</span><span class="lang-en">Started Vibe Coding, entering AI dev.</span></div>
+                </div>
+                <div class="timeline-item" style="margin-bottom: 0;">
+                    <div class="tl-date">2026.06</div>
+                    <div style="font-size: 0.95rem; color:var(--text-dim);"><span class="lang-zh">高中毕业，迎接技术与艺术的征途。</span><span class="lang-en">High school graduation, ready for new journeys.</span></div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 开发技能与项目矩阵 -->
+    <section class="section" id="projects-section">
+      <i class="fas fa-microchip section-bg-icon bg-icon-code"></i>
+      
+      <h2 class="section-title"><i class="fas fa-code"></i> <span class="lang-zh">极客开发与开源</span><span class="lang-en">Geek & Open Source</span></h2>
+      <div class="bento-grid">
+        
+        <div class="glass-card-normal bento-wide card-content" style="display: flex; flex-wrap: wrap; gap: 30px;">
+            <div style="flex: 1; min-width: 250px;">
+                <h3 style="margin-top: 0; font-size: 1.5rem;"><span class="lang-zh">核心驱动引擎</span><span class="lang-en">Core Drive Engine</span></h3>
+                <p style="color: var(--text-dim); font-size: 0.95rem; line-height: 1.6;">
+                    <span class="lang-zh">熟练运用自然语言编程（Vibe Coding）重塑开发范式。过去一年在 GitHub 上贡献了超过 225 次代码，实现从概念到落地的极速部署。</span>
+                    <span class="lang-en">Reshaping dev paradigms via Vibe Coding. Over 225 GitHub commits in the past year, ensuring rapid deployment from concept to reality.</span>
+                </p>
+            </div>
+            
+            <div style="flex: 2; display: flex; flex-direction: column; justify-content: center;">
+                <div class="tech-category">
+                    <div class="tech-title">AI Models (大语言模型)</div>
+                    <div class="badge-group">
+                        <span class="badge cyan">Gemini</span><span class="badge cyan">ChatGPT</span><span class="badge cyan">Claude</span><span class="badge cyan">Kimi</span>
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <div class="tech-title">Development Stack (核心技术栈)</div>
+                    <div class="badge-group">
+                        <span class="badge">TypeScript</span><span class="badge">React</span><span class="badge">Vite</span><span class="badge">Tailwind CSS</span><span class="badge">Python</span><span class="badge">Flask</span><span class="badge">Node.js</span>
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <div class="tech-title">Software & Infra (软件与基建)</div>
+                    <div class="badge-group">
+                        <span class="badge">Cursor</span><span class="badge">Trae</span><span class="badge">Google AI Studio</span><span class="badge">Feiniu NAS (飞牛)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="https://github.com/openclaw/openclaw" target="_blank" class="glass-card-normal" style="text-decoration:none; color:inherit; display:block;">
+          <div class="card-bg-img" style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800');"></div>
+          <div class="card-overlay"></div>
+          
           <div class="card-content">
-            <div class="repo-badge">Contributor</div>
-            <h3>OpenClaw</h3>
-            <p class="lang-zh">开源跨平台个人 AI 助手。作为项目贡献者之一，我参与了核心功能的开发与代码合并，在实践中提升工程能力。</p>
-            <p class="lang-en">An open-source cross-platform AI assistant. As a contributor, I participated in core feature development and code merging.</p>
-            <div style="color:var(--accent); font-weight:600;">View on GitHub →</div>
+            <div class="badge-group">
+                <span class="badge cyan"><i class="fas fa-code-branch"></i> 开源贡献者</span>
+                <span class="badge"><i class="fas fa-star" style="color: gold;"></i> 37.2k+</span>
+            </div>
+            <h3 style="font-size: 1.4rem; margin-top:10px;">OpenClaw</h3>
+            <p class="lang-zh" style="color:var(--text-dim); font-size:0.95rem;">高星标的开源跨平台个人 AI 助手，支持本地运行接入多种 IM。作为贡献者参与功能开发与代码合并。</p>
+            <p class="lang-en" style="color:var(--text-dim); font-size:0.95rem;">Highly starred open-source AI assistant. Contributed to feature dev and code merging.</p>
           </div>
         </a>
 
-        <!-- 视频 1 -->
-        <div class="glass-card">
-          <div class="video-container">
-            <iframe src="https://player.bilibili.com/player.html?bvid=BV14y411e7qG&page=1&autoplay=0" allowfullscreen></iframe>
-          </div>
+        <a href="https://github.com/Jimmy-xuzimo/gaokao-vocab" target="_blank" class="glass-card-normal" style="text-decoration:none; color:inherit; display:block;">
           <div class="card-content">
-            <h3><span class="lang-zh">原创短片《茫》</span><span class="lang-en">Film "Bewilderment"</span></h3>
-            <p style="font-size:0.9rem; color:var(--text-dim);"><span class="lang-zh">高中生原创短片作品，用镜头语言讲述动人故事。</span><span class="lang-en">Original short film telling stories through camera language.</span></p>
-          </div>
-        </div>
-
-        <!-- 视频 2 -->
-        <div class="glass-card">
-          <div class="video-container">
-            <iframe src="https://player.bilibili.com/player.html?bvid=BV1eZ421B7cn&page=1&autoplay=0" allowfullscreen></iframe>
-          </div>
-          <div class="card-content">
-            <h3><span class="lang-zh">Call of Silence</span><span class="lang-en">Call of Silence</span></h3>
-            <p style="font-size:0.9rem; color:var(--text-dim);"><span class="lang-zh">特效钢琴演奏可视化，将音乐律动转化为视觉体验。</span><span class="lang-en">Piano performance visualization transforming rhythms into visuals.</span></p>
-          </div>
-        </div>
-
-        <!-- 500px -->
-        <a href="https://500px.com.cn/Jimmyzimo" target="_blank" class="glass-card" style="text-decoration:none; color:inherit;">
-          <i class="fas fa-camera watermark"></i>
-          <div class="card-content">
-            <h3><span class="lang-zh">摄影作品集</span><span class="lang-en">Photography Portfolio</span></h3>
-            <p class="lang-zh">风景与人文纪实摄影，用光影记录每一帧美好瞬间。</p>
-            <p class="lang-en">Landscape and documentary photography, recording beautiful moments.</p>
-            <div style="color:var(--accent); font-weight:600; margin-top:15px;">Explore 500px →</div>
+            <div class="badge-group">
+                <span class="badge">个人项目</span>
+                <span class="badge">TypeScript</span>
+            </div>
+            <h3 style="font-size: 1.4rem; margin-top:10px;">gaokao-vocab</h3>
+            <p class="lang-zh" style="color:var(--text-dim); font-size:0.95rem;">独立开发的高考词汇学习应用，内置 3817 词，支持单词卡片、每日测验与学习数据可视化。</p>
+            <p class="lang-en" style="color:var(--text-dim); font-size:0.95rem;">TS built vocabulary app for Gaokao, including 3817 words with quiz and data viz.</p>
           </div>
         </a>
 
-        <!-- Github -->
-        <a href="https://github.com/Jimmy-xuzimo" target="_blank" class="glass-card" style="text-decoration:none; color:inherit;">
-          <i class="fas fa-code watermark"></i>
+        <a href="https://github.com/Jimmy-xuzimo/Chronos-Monitoring" target="_blank" class="glass-card-normal" style="text-decoration:none; color:inherit; display:block;">
           <div class="card-content">
-            <h3><span class="lang-zh">个人开发项目</span><span class="lang-en">Personal Projects</span></h3>
-            <p class="lang-zh">包含备考应用 gaokao-vocab 以及个人 NAS 监控仪表盘。</p>
-            <p class="lang-en">Including gaokao-vocab app and personal NAS dashboard.</p>
-            <div style="color:var(--accent); font-weight:600; margin-top:15px;">View Projects →</div>
+            <div class="badge-group">
+                <span class="badge">个人项目</span>
+                <span class="badge">Python</span>
+            </div>
+            <h3 style="font-size: 1.4rem; margin-top:10px;">Chronos-Monitoring</h3>
+            <p class="lang-zh" style="color:var(--text-dim); font-size:0.95rem;">工业科幻风格的 Linux/NAS 服务器监控面板，基于 Python 开发，可实时监控硬件与网络。</p>
+            <p class="lang-en" style="color:var(--text-dim); font-size:0.95rem;">Sci-fi style NAS/Linux monitoring dashboard developed in Python.</p>
           </div>
         </a>
 
       </div>
     </section>
 
-    <!-- 联系方式 -->
+    <!-- 视觉与摄影多媒体 -->
     <section class="section">
-      <h2 class="section-title">📬 <span class="lang-zh">联系我</span><span class="lang-en">Contact Me</span></h2>
+      <i class="fas fa-video section-bg-icon bg-icon-photo"></i>
+
+      <h2 class="section-title"><i class="fas fa-camera-retro"></i> <span class="lang-zh">视觉创造与多媒体</span><span class="lang-en">Visual Arts & Media</span></h2>
+      <div class="bento-grid">
+        
+        <div class="glass-card-normal bento-wide">
+            <div class="card-bg-img" style="background-image: url('https://images.unsplash.com/photo-1473081556163-2a17de81fc97?auto=format&fit=crop&q=80&w=1200');"></div>
+            <div class="card-overlay"></div>
+            
+            <div class="card-content" style="display: flex; flex-wrap: wrap; gap: 20px;">
+                <div style="flex: 1; min-width: 280px;">
+                    <div class="badge-group">
+                        <span class="badge cyan"><i class="fas fa-camera"></i> 视觉中国 500px 签约</span>
+                        <span class="badge cyan"><i class="fas fa-camera"></i> 图虫签约</span>
+                        <span class="badge"><i class="fas fa-plane"></i> DJI Mavic 4 Pro</span>
+                    </div>
+                    <h3 style="font-size: 1.6rem; margin-top: 15px;"><span class="lang-zh">专业摄影视界</span><span class="lang-en">Photography Vision</span></h3>
+                    <p style="color:var(--text-dim); font-size:0.95rem; line-height: 1.6;">
+                        <span class="lang-zh">专注风景与人文纪实，用镜头捕捉真实瞬间。热爱无人机航拍，借助 DJI Mavic 4 Pro 探索光影与壮丽景色的视觉极限。</span>
+                        <span class="lang-en">Focusing on landscape and documentary photography. Exploring visual limits of light and grand scenery with drone aerials.</span>
+                    </p>
+                    <a href="https://500px.com.cn/Jimmyzimo" target="_blank" style="display:inline-block; margin-top: 10px; color: var(--accent); font-weight: bold; text-decoration: none;">
+                        Visit 500px Profile <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div style="display: flex; gap: 30px; align-items: center; justify-content: flex-start; padding-top: 10px;">
+                    <div><div style="font-size: 2rem; font-weight: 900;">87</div><div style="font-size: 0.8rem; color: var(--text-dim);">FANS</div></div>
+                    <div><div style="font-size: 2rem; font-weight: 900;">12,565</div><div style="font-size: 0.8rem; color: var(--text-dim);">VIEWS</div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-card-normal">
+          <div class="video-container">
+            <iframe src="https://player.bilibili.com/player.html?bvid=BV14y411e7qG&page=1&autoplay=0&high_quality=1" allowfullscreen></iframe>
+          </div>
+          <div class="card-content">
+            <h3 style="margin-top:0; font-size:1.2rem;"><span class="lang-zh">原创短片《茫》</span><span class="lang-en">Film "Bewilderment"</span></h3>
+            <p style="font-size:0.9rem; color:var(--text-dim); margin-bottom:0;"><span class="lang-zh">高中生独立完成剧本与摄制，以纯粹镜头语言讲述故事。</span><span class="lang-en">Independently directed short film telling stories through camera language.</span></p>
+          </div>
+        </div>
+
+        <div class="glass-card-normal">
+          <div class="video-container">
+            <iframe src="https://player.bilibili.com/player.html?bvid=BV1VGtZzBEQR&page=1&autoplay=0&high_quality=1" allowfullscreen></iframe>
+          </div>
+          <div class="card-content">
+            <h3 style="margin-top:0; font-size:1.2rem;"><span class="lang-zh">DJI Mavic 4 Pro 旅拍</span><span class="lang-en">DJI Aerial</span></h3>
+            <p style="font-size:0.9rem; color:var(--text-dim); margin-bottom:0;"><span class="lang-zh">上帝视角，捕捉光影交错的真实瞬间与大自然的壮丽。</span><span class="lang-en">God's eye view. Capturing true moments of light and grand nature.</span></p>
+          </div>
+        </div>
+
+        <div class="glass-card-normal">
+          <div class="video-container">
+            <iframe src="https://player.bilibili.com/player.html?bvid=BV1eZ421B7cn&page=1&autoplay=0&high_quality=1" allowfullscreen></iframe>
+          </div>
+          <div class="card-content">
+            <h3 style="margin-top:0; font-size:1.2rem;"><span class="lang-zh">《Call of Silence》可视化</span><span class="lang-en">Music Visualization</span></h3>
+            <p style="font-size:0.9rem; color:var(--text-dim); margin-bottom:0;"><span class="lang-zh">特效钢琴演奏，探索听觉律动艺术与视觉特效的融合。</span><span class="lang-en">Piano VFX, exploring the fusion of auditory rhythm and visuals.</span></p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 简洁大气的联系方式 -->
+    <section class="section">
+      <h2 class="section-title"><i class="fas fa-envelope"></i> <span class="lang-zh">联系方式</span><span class="lang-en">Contact Me</span></h2>
       <div class="contact-grid">
-        <a href="mailto:xuzimojimmy@163.com" class="glass-card contact-item">
-          <div class="skill-icon"><i class="fas fa-envelope"></i></div>
-          <div>
-            <div style="font-size:0.8rem; color:var(--text-dim);">163 MAIL</div>
-            <div style="font-weight:600;">xuzimojimmy@163.com</div>
-          </div>
+        <a href="mailto:xuzimojimmy@163.com" class="glass-card-normal contact-item">
+          <i class="fas fa-at contact-icon"></i>
+          <div style="font-size:0.85rem; color:var(--text-dim); margin-bottom: 5px;">EMAIL</div>
+          <div style="font-weight:600; font-size: 0.95rem;">xuzimojimmy@163.com</div>
         </a>
-        <a href="https://wa.me/8613656635570" target="_blank" class="glass-card contact-item">
-          <div class="skill-icon"><i class="fab fa-whatsapp"></i></div>
-          <div>
-            <div style="font-size:0.8rem; color:var(--text-dim);">WHATSAPP</div>
-            <div style="font-weight:600;">+86 13656635570</div>
-          </div>
+        <a href="https://wa.me/8613656635570" target="_blank" class="glass-card-normal contact-item">
+          <i class="fab fa-whatsapp contact-icon"></i>
+          <div style="font-size:0.85rem; color:var(--text-dim); margin-bottom: 5px;">WHATSAPP</div>
+          <div style="font-weight:600; font-size: 0.95rem;">+86 13656635570</div>
         </a>
-        <a href="https://github.com/Jimmy-xuzimo" target="_blank" class="glass-card contact-item">
-          <div class="skill-icon"><i class="fab fa-github"></i></div>
-          <div>
-            <div style="font-size:0.8rem; color:var(--text-dim);">GITHUB</div>
-            <div style="font-weight:600;">Jimmy-xuzimo</div>
-          </div>
+        <a href="https://github.com/Jimmy-xuzimo" target="_blank" class="glass-card-normal contact-item">
+          <i class="fab fa-github contact-icon"></i>
+          <div style="font-size:0.85rem; color:var(--text-dim); margin-bottom: 5px;">GITHUB</div>
+          <div style="font-weight:600; font-size: 0.95rem;">Jimmy-xuzimo</div>
+        </a>
+        <a href="https://space.bilibili.com/1504211198" target="_blank" class="glass-card-normal contact-item">
+          <i class="fab fa-bilibili contact-icon"></i>
+          <div style="font-size:0.85rem; color:var(--text-dim); margin-bottom: 5px;">BILIBILI</div>
+          <div style="font-weight:600; font-size: 0.95rem;">1504211198</div>
         </a>
       </div>
     </section>
 
   </main>
 
-  <footer style="padding: 60px 0; text-align: center; opacity: 0.5; font-size: 0.9rem;">
-    <p>© 2026 Jimmy-xuzimo. All rights reserved.</p>
+  <footer style="padding: 40px 0; text-align: center; font-size: 0.9rem; border-top: 1px solid var(--glass-border); margin-top: 20px;">
+    <p style="color: var(--text-dim);">© 2026 Zimo Xu. Designed & Engineered with Vibe Coding.</p>
   </footer>
 
   <script>
-    // 语言切换
     function toggleLang() {
       const body = document.body;
       const btn = document.getElementById('lang-btn');
@@ -409,26 +666,24 @@
       const target = current === 'zh' ? 'en' : 'zh';
       
       body.setAttribute('data-lang', target);
-      btn.textContent = target === 'zh' ? 'EN' : '中';
+      btn.textContent = target === 'zh' ? 'EN' : '中文';
       localStorage.setItem('pref_lang', target);
     }
 
-    // 滚动动画
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.05 });
 
     document.querySelectorAll('.section').forEach(s => observer.observe(s));
 
-    // 初始化语言
     window.onload = () => {
       const saved = localStorage.getItem('pref_lang') || 'zh';
       document.body.setAttribute('data-lang', saved);
-      document.getElementById('lang-btn').textContent = saved === 'zh' ? 'EN' : '中';
+      document.getElementById('lang-btn').textContent = saved === 'zh' ? 'EN' : '中文';
     }
   </script>
 </body>
