@@ -1,690 +1,1177 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-  <title>徐子墨 | Zimo Xu - 个人档案</title>
-  
+<html lang="zh-CN" data-theme="light"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Zimo Xu | 徐子墨 — Personal Archive</title>
+  <meta name="description" content="Zimo Xu (徐子墨) — CUCN student, AI developer, VCG contract photographer &amp; filmmaker. AI × Full-Stack × Visual Arts. 南京传媒学院 / 视觉中国签约摄影师 / AI 开发者。">
+  <meta name="theme-color" content="#e9e4d6">
+  <meta property="og:title" content="Zimo Xu | 徐子墨 — Personal Archive">
+  <meta property="og:description" content="AI × Full-Stack × Visual Arts. CUCN '26 · AI Developer · VCG Contract Photographer.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="images/cover_01.jpg">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23ff7a1c'/%3E%3Ctext x='32' y='45' font-family='Arial Black' font-size='34' font-weight='900' text-anchor='middle' fill='%230b0d12'%3EX%3C/text%3E%3C/svg%3E">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Chakra+Petch:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
+
   <style>
+    /* ============ TOKENS · 工业废土 INDUSTRIAL WASTELAND ============ */
     :root {
-      /* 专业科幻配色 */
-      --bg-dark: #030407;
-      --bg-card: rgba(12, 14, 20, 0.7);
-      --bg-card-dark: rgba(18, 20, 28, 0.85); /* 右侧面板深色背景 */
-      --accent: #66e8ff; /* 对应图中的冰青色 */
-      --accent-dim: rgba(102, 232, 255, 0.15);
-      --text-main: #f0f4f8;
-      --text-dim: #9ba4b5;
-      --glass-border: rgba(102, 232, 255, 0.15);
-      --ease-out: cubic-bezier(0.19, 1, 0.22, 1);
+      --font-display: 'Archivo Black', 'Chakra Petch', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      --font-head: 'Chakra Petch', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+      --font-body: 'Chakra Petch', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Consolas, monospace;
+      --ease: cubic-bezier(0.19, 1, 0.22, 1);
     }
 
+    html[data-theme="dark"] {
+      --bg: #0b0d12;
+      --bg-soft: #0f121a;
+      --surface: #13161f;
+      --surface-2: #191d29;
+      --ink: #f2ede2;
+      --ink-dim: #9aa2ad;
+      --ink-faint: #666e7a;
+      --orange: #ff7a1c;
+      --orange-strong: #ff9340;
+      --orange-ink: #170f07;
+      --blue: #45b8f5;
+      --orange-soft: rgba(255, 122, 28, 0.12);
+      --blue-soft: rgba(69, 184, 245, 0.12);
+      --line: rgba(240, 235, 220, 0.10);
+      --line-strong: rgba(240, 235, 220, 0.20);
+      --grid-line: rgba(240, 235, 220, 0.038);
+      --bar-trans: rgba(11, 13, 18, 0.82);
+      --shadow: 0 18px 44px rgba(0, 0, 0, 0.45);
+      --noise-op: 0.05;
+      color-scheme: dark;
+    }
+
+    html[data-theme="light"] {
+      --bg: #e9e4d6;
+      --bg-soft: #efeadd;
+      --surface: #f4f0e5;
+      --surface-2: #faf7ee;
+      --ink: #23282e;
+      --ink-dim: #5c6470;
+      --ink-faint: #8b9099;
+      --orange: #d6580c;
+      --orange-strong: #b84a06;
+      --orange-ink: #fff6ea;
+      --blue: #2077b6;
+      --orange-soft: rgba(214, 88, 12, 0.10);
+      --blue-soft: rgba(32, 119, 182, 0.10);
+      --line: rgba(35, 40, 46, 0.15);
+      --line-strong: rgba(35, 40, 46, 0.30);
+      --grid-line: rgba(35, 40, 46, 0.055);
+      --bar-trans: rgba(233, 228, 214, 0.90);
+      --shadow: 0 16px 38px rgba(80, 65, 40, 0.14);
+      --noise-op: 0.06;
+      color-scheme: light;
+    }
+
+    /* ============ BASE ============ */
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
-    /* 平滑滚动核心 */
-    html { scroll-behavior: smooth; }
-
+    html { scroll-behavior: smooth; scroll-padding-top: 74px; }
     body {
       margin: 0;
-      background-color: var(--bg-dark);
-      font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      color: var(--text-main);
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.65;
       overflow-x: hidden;
+      transition: background 0.35s, color 0.35s;
     }
-
-    /* 增强版科幻网格背景 */
+    /* 蓝图网格 blueprint grid */
     body::before {
-      content: ""; position: fixed; inset: 0; z-index: -2;
-      background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-      background-size: 50px 50px; pointer-events: none;
+      content: ""; position: fixed; inset: 0; z-index: -2; pointer-events: none;
+      background-image:
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: 44px 44px;
     }
+    /* 噪点磨损 noise & wear */
     body::after {
-      content: ""; position: fixed; inset: 0; z-index: -1;
-      background: radial-gradient(circle at 50% 0%, rgba(102, 232, 255, 0.08) 0%, transparent 60%);
-      pointer-events: none;
+      content: ""; position: fixed; inset: 0; z-index: 60; pointer-events: none; opacity: var(--noise-op);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.7'/%3E%3C/svg%3E");
+    }
+    ::selection { background: var(--orange); color: var(--orange-ink); }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+    h1, h2, h3, h4 { margin: 0; line-height: 1.15; }
+    p { margin: 0; }
+
+    .container { max-width: 1280px; margin: 0 auto; padding-inline: clamp(16px, 4vw, 32px); }
+    .mono { font-family: var(--font-mono); }
+
+    /* ============ 双语 BILINGUAL ============ */
+    body[data-lang="zh"] .lang-en { display: none !important; }
+    body[data-lang="en"] .lang-zh { display: none !important; }
+
+    /* ============ 顶栏 TOPBAR ============ */
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; gap: clamp(10px, 2.5vw, 26px);
+      height: 60px; padding-inline: clamp(14px, 3vw, 30px);
+      background: var(--bar-trans);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+      transition: background 0.35s;
+    }
+    .brand {
+      display: inline-flex; align-items: center; gap: 9px; text-decoration: none;
+      font-family: var(--font-mono); font-weight: 700; font-size: 14px; letter-spacing: 0.08em;
+      color: var(--ink); white-space: nowrap;
+    }
+    .brand::before { content: ""; width: 13px; height: 13px; background: var(--orange); flex: none; }
+    .brand em { font-style: normal; color: var(--orange); }
+    .nav {
+      display: flex; align-items: center; gap: 2px; margin-inline: auto;
+      overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;
+    }
+    .nav::-webkit-scrollbar { display: none; }
+    .nav a {
+      padding: 9px 11px; text-decoration: none; white-space: nowrap;
+      font-family: var(--font-mono); font-weight: 600; font-size: 11px;
+      letter-spacing: 0.12em; color: var(--ink-dim); transition: color 0.2s;
+    }
+    .nav a:hover { color: var(--orange); }
+    .controls { display: flex; align-items: center; gap: 8px; flex: none; }
+    .tbtn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      height: 36px; min-width: 40px; padding: 0 12px;
+      background: transparent; border: 1px solid var(--line-strong);
+      color: var(--ink); cursor: pointer;
+      font-family: var(--font-mono); font-weight: 700; font-size: 11px; letter-spacing: 0.08em;
+      transition: all 0.22s;
+    }
+    .tbtn:hover { border-color: var(--orange); color: var(--orange); }
+    /* 语言按钮：交给全局双语规则，始终显示目标语言 */
+
+    /* ============ 按钮 & 芯片 ============ */
+    .btn {
+      display: inline-flex; align-items: center; gap: 9px;
+      padding: 14px 26px; text-decoration: none; cursor: pointer;
+      font-family: var(--font-head); font-weight: 700; font-size: 13px;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      transition: transform 0.25s var(--ease), background 0.25s, color 0.25s, border-color 0.25s;
+    }
+    .btn i { font-size: 12px; }
+    .btn-solid {
+      background: var(--orange); color: var(--orange-ink);
+      clip-path: polygon(0 0, calc(100% - 13px) 0, 100% 13px, 100% 100%, 13px 100%, 0 calc(100% - 13px));
+    }
+    .btn-solid:hover { background: var(--orange-strong); transform: translateY(-2px); }
+    .btn-ghost { border: 1px solid var(--line-strong); color: var(--ink); background: transparent; }
+    .btn-ghost:hover { border-color: var(--orange); color: var(--orange); transform: translateY(-2px); }
+    .btn-blue { border: 1px solid rgba(69, 184, 245, 0.5); color: var(--blue); background: var(--blue-soft); }
+    .btn-blue:hover { border-color: var(--blue); transform: translateY(-2px); }
+    html[data-theme="light"] .btn-blue { border-color: rgba(32, 119, 182, 0.45); }
+
+    .chip {
+      display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px;
+      border: 1px solid var(--line-strong);
+      font-family: var(--font-mono); font-weight: 600; font-size: 10.5px;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-dim);
+      transition: all 0.22s; white-space: nowrap;
+    }
+    .chip i { font-size: 10px; }
+    .chip.o { color: var(--orange); border-color: rgba(255, 122, 28, 0.45); background: var(--orange-soft); }
+    .chip.b { color: var(--blue); border-color: rgba(69, 184, 245, 0.45); background: var(--blue-soft); }
+    html[data-theme="light"] .chip.o { border-color: rgba(214, 88, 12, 0.45); }
+    html[data-theme="light"] .chip.b { border-color: rgba(32, 119, 182, 0.45); }
+
+    /* ============ 警示条 HAZARD ============ */
+    .hazard {
+      height: 10px; width: 100%;
+      background: repeating-linear-gradient(-45deg, var(--orange) 0 14px, transparent 14px 28px);
+      border-block: 1px solid var(--line-strong);
+      opacity: 0.9; flex: none;
     }
 
-    /* 极速双语切换 */
-    [data-lang="zh"] .lang-en { display: none !important; }
-    [data-lang="en"] .lang-zh { display: none !important; }
-    .lang-zh, .lang-en { animation: textReveal 0.4s var(--ease-out); }
-    @keyframes textReveal { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
-
-    /* 顶部导航按钮 */
-    .lang-toggle {
-      position: fixed; top: clamp(15px, 4vw, 25px); right: clamp(15px, 4vw, 25px); z-index: 1000;
-      padding: 8px 20px; background: rgba(102, 232, 255, 0.05);
-      backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-      border: 1px solid var(--glass-border); border-radius: 100px;
-      color: var(--accent); font-size: 13px; font-weight: bold;
-      cursor: pointer; transition: all 0.3s;
+    /* ============ HERO ============ */
+    .hero { padding-top: 60px; }
+    .hero-grid {
+      display: grid; grid-template-columns: 1.08fr 0.92fr;
+      gap: clamp(28px, 4vw, 56px); align-items: center;
+      padding-block: clamp(44px, 8vh, 92px);
+      min-height: calc(100svh - 70px);
     }
-    .lang-toggle:hover { background: var(--accent); color: #000; }
-
-    /* 容器控制 */
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 clamp(15px, 4vw, 30px); }
-
-    /* =========================================
-       全新 Hero Section (首屏重构)
-       ========================================= */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 60px;
-      padding-top: 60px; /* 给导航留空间 */
+    .hero-eyebrow {
+      display: flex; align-items: center; gap: 12px;
+      font-family: var(--font-mono); font-weight: 700; font-size: 11.5px;
+      letter-spacing: 0.2em; color: var(--orange); text-transform: uppercase;
+      margin-bottom: clamp(16px, 2.5vh, 26px);
     }
-
-    /* 左侧文字区 */
-    .hero-left {
-      flex: 1;
-      max-width: 580px;
-      opacity: 0;
-      animation: slideInLeft 1s var(--ease-out) forwards;
-    }
-    
-    .hero-top-tag {
-      display: inline-block;
-      padding: 6px 16px;
-      background: rgba(102, 232, 255, 0.08);
-      border: 1px solid rgba(102, 232, 255, 0.2);
-      border-radius: 100px;
-      color: var(--accent);
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 25px;
-      letter-spacing: 1px;
-    }
-
+    .hero-eyebrow::after { content: ""; flex: none; width: 110px; height: 1px; background: repeating-linear-gradient(90deg, var(--orange) 0 8px, transparent 8px 14px); opacity: 0.7; }
     .hero-title {
-      font-size: clamp(3.5rem, 8vw, 6rem);
-      font-weight: 900;
-      margin: 0 0 20px 0;
-      color: #fff;
-      line-height: 1.1;
-      letter-spacing: 2px;
-      /* 选配：轻微文字发光 */
-      text-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+      font-family: var(--font-display); font-weight: 400;
+      font-size: clamp(3rem, 8.2vw, 6.4rem);
+      line-height: 0.98; letter-spacing: 0.01em; text-transform: uppercase;
+      margin-bottom: clamp(16px, 2.5vh, 24px);
+    }
+    .hero-title .en { display: inline; }
+    .hero-title .zh { display: none; font-family: var(--font-head); font-weight: 900; letter-spacing: 0.06em; }
+    body[data-lang="zh"] .hero-title .en { display: none; }
+    body[data-lang="zh"] .hero-title .zh { display: inline; }
+    .hero-title .stroke { color: transparent; -webkit-text-stroke: 2.5px var(--orange); }
+    body[data-lang="zh"] .hero-title .stroke { -webkit-text-stroke: 0; color: var(--orange); }
+    .hero-roles { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: clamp(16px, 2.5vh, 26px); }
+    .hero-bio { color: var(--ink-dim); font-size: clamp(0.95rem, 1.4vw, 1.05rem); line-height: 1.8; max-width: 56ch; margin-bottom: clamp(24px, 4vh, 40px); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; }
+
+    /* HUD 面板 */
+    .hud {
+      position: relative; background: var(--surface); border: 1px solid var(--line);
+      box-shadow: var(--shadow); overflow: hidden;
+    }
+    .hud::before {
+      content: ""; position: absolute; top: 0; left: 0; height: 2px; width: 40%;
+      background: linear-gradient(90deg, transparent, var(--orange), transparent);
+      animation: scan 5s linear infinite; z-index: 4;
+    }
+    @keyframes scan { 0% { transform: translateX(-110%); } 100% { transform: translateX(350%); } }
+    .hud-head {
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      padding: 14px 20px; border-bottom: 1px solid var(--line);
+      font-family: var(--font-mono); font-weight: 700; font-size: 11px;
+      letter-spacing: 0.14em; text-transform: uppercase;
+    }
+    .hud-head .id { color: var(--ink); }
+    .hud-head .id em { font-style: normal; color: var(--orange); }
+    .hud-status { display: inline-flex; align-items: center; gap: 7px; color: var(--blue); }
+    .hud-status::before {
+      content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--blue);
+      animation: blink 1.6s steps(2) infinite;
+    }
+    @keyframes blink { 50% { opacity: 0.25; } }
+    .hud-body { padding: clamp(16px, 2.5vw, 24px); display: grid; gap: clamp(14px, 2vw, 20px); }
+
+    .vf { position: relative; background: #000; border: 1px solid var(--line-strong); overflow: hidden; }
+    .vf img { width: 100%; height: auto; display: block; filter: saturate(0.95) contrast(1.03); }
+    .vf .rec {
+      position: absolute; top: 10px; left: 12px; z-index: 3;
+      font-family: var(--font-mono); font-weight: 700; font-size: 10px;
+      letter-spacing: 0.14em; color: var(--orange);
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .vf .rec::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--orange); animation: blink 1.2s steps(2) infinite; }
+    .vf .meta {
+      position: absolute; bottom: 10px; right: 12px; z-index: 3;
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em;
+      color: rgba(255, 255, 255, 0.78); text-shadow: 0 1px 3px rgba(0,0,0,0.6);
     }
 
-    .hero-roles {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 30px;
+    .idrows { border: 1px dashed var(--line-strong); }
+    .idrow {
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+      padding: 8px 13px;
+      font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.07em;
     }
-    
-    .role-tag {
-      padding: 6px 16px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 100px;
-      color: #e2e8f0;
-      font-size: 0.9rem;
+    .idrow + .idrow { border-top: 1px dashed var(--line); }
+    .idrow .k { color: var(--ink-faint); font-weight: 600; }
+    .idrow .v { color: var(--ink); font-weight: 600; text-align: right; }
+    .idrow .v .hi { color: var(--orange); }
+
+    /* ============ 章节头 SECTION HEAD ============ */
+    .section { padding-block: clamp(64px, 11vh, 110px); position: relative; }
+    .section + .section { border-top: 1px solid var(--line); }
+    .sec-head { display: flex; align-items: baseline; gap: clamp(12px, 2vw, 18px); margin-bottom: clamp(30px, 5vh, 46px); flex-wrap: wrap; }
+    .sec-no { font-family: var(--font-mono); font-weight: 700; font-size: 13px; letter-spacing: 0.14em; color: var(--orange); }
+    .sec-title { flex: 1; font-family: var(--font-head); font-weight: 700; font-size: clamp(1.55rem, 3.2vw, 2.25rem); letter-spacing: 0.05em; text-transform: uppercase; }
+    .sec-meta { font-family: var(--font-mono); font-weight: 500; font-size: 10.5px; letter-spacing: 0.12em; color: var(--ink-faint); text-transform: uppercase; white-space: nowrap; }
+
+    /* ============ 面板 PANEL ============ */
+    .panel {
+      position: relative; background: var(--surface); border: 1px solid var(--line);
+      transition: border-color 0.28s, transform 0.28s, box-shadow 0.28s;
+    }
+    .panel:hover { border-color: rgba(255, 122, 28, 0.38); }
+    html[data-theme="light"] .panel:hover { border-color: rgba(214, 88, 12, 0.38); }
+    a.panel { text-decoration: none; display: block; }
+    a.panel:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+    .panel-pad { padding: clamp(22px, 3.2vw, 36px); }
+
+    /* 角标 corner brackets */
+    [data-corners] { position: relative; }
+    .cx {
+      position: absolute; width: 15px; height: 15px; pointer-events: none; z-index: 5;
+      border: 0 solid var(--orange); opacity: 0.85; transition: all 0.25s var(--ease);
+    }
+    .cx-tl { top: 7px; left: 7px; border-top-width: 2px; border-left-width: 2px; }
+    .cx-tr { top: 7px; right: 7px; border-top-width: 2px; border-right-width: 2px; }
+    .cx-bl { bottom: 7px; left: 7px; border-bottom-width: 2px; border-left-width: 2px; }
+    .cx-br { bottom: 7px; right: 7px; border-bottom-width: 2px; border-right-width: 2px; }
+    [data-corners]:hover .cx { width: 21px; height: 21px; opacity: 1; }
+
+    /* ============ 01 PROFILE ============ */
+    .profile-grid { display: grid; grid-template-columns: 1.12fr 0.88fr; gap: clamp(18px, 2.5vw, 26px); }
+    .panel-tag {
+      font-family: var(--font-mono); font-weight: 700; font-size: 10.5px;
+      letter-spacing: 0.16em; color: var(--orange); text-transform: uppercase;
+      margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
+    }
+    .about h3 { font-family: var(--font-head); font-weight: 700; font-size: clamp(1.25rem, 2.2vw, 1.55rem); letter-spacing: 0.03em; margin-bottom: 16px; }
+    .about p { color: var(--ink-dim); font-size: 0.96rem; line-height: 1.85; }
+    .about p + p { margin-top: 12px; }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+
+    /* 时间轴 timeline */
+    .tl { position: relative; padding-left: 24px; margin-top: 4px; }
+    .tl::before {
+      content: ""; position: absolute; left: 5px; top: 8px; bottom: 14px; width: 2px;
+      background: linear-gradient(var(--orange) 15%, var(--blue));
+      opacity: 0.75;
+    }
+    .tl-item { position: relative; padding-bottom: clamp(18px, 2.6vh, 26px); }
+    .tl-item:last-child { padding-bottom: 4px; }
+    .tl-item::before {
+      content: ""; position: absolute; left: -24px; top: 5px;
+      width: 9px; height: 9px; background: var(--surface);
+      border: 2px solid var(--orange); transform: translateX(0.5px);
+      transition: all 0.25s; box-sizing: content-box;
+    }
+    .tl-item:hover::before { background: var(--orange); box-shadow: 0 0 12px rgba(255, 122, 28, 0.7); }
+    .tl-item.now::before { background: var(--orange); box-shadow: 0 0 14px rgba(255, 122, 28, 0.7); }
+    .tl-date {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-mono); font-weight: 700; font-size: 13px;
+      letter-spacing: 0.1em; color: var(--orange); margin-bottom: 3px;
+    }
+    .tl-txt { color: var(--ink-dim); font-size: 0.92rem; line-height: 1.6; }
+    .new-chip {
+      padding: 2px 8px; background: var(--orange); color: var(--orange-ink);
+      font-family: var(--font-mono); font-weight: 700; font-size: 9px; letter-spacing: 0.12em;
     }
 
-    .hero-desc {
-      font-size: clamp(1rem, 2vw, 1.1rem);
-      color: var(--text-dim);
-      line-height: 1.8;
-      margin-bottom: 40px;
+    /* ============ 02 SKILLS ============ */
+    .skill-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(18px, 2.5vw, 26px); }
+    .skill-lead p { color: var(--ink-dim); font-size: 0.96rem; line-height: 1.85; }
+    .skill-lead .big { color: var(--ink); font-weight: 600; font-size: 1.05rem; }
+    .tag-cat { margin-bottom: 22px; }
+    .tag-cat:last-child { margin-bottom: 0; }
+    .tag-cat h4 {
+      font-family: var(--font-mono); font-weight: 600; font-size: 10.5px;
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue);
+      margin-bottom: 10px; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;
+    }
+    .tag-cat h4 .zh-sub { color: var(--ink-faint); letter-spacing: 0.08em; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      padding: 8px 15px; border: 1px solid var(--line-strong);
+      font-family: var(--font-head); font-weight: 600; font-size: 12.5px;
+      letter-spacing: 0.04em; color: var(--ink);
+      background: var(--bg-soft); transition: all 0.22s;
+    }
+    .tag:hover { border-color: var(--orange); color: var(--orange); transform: translateY(-2px); }
+    .tag.ai { border-color: rgba(255, 122, 28, 0.42); background: var(--orange-soft); color: var(--orange); }
+    html[data-theme="light"] .tag.ai { border-color: rgba(214, 88, 12, 0.42); }
+
+    /* ============ 03 OPEN SOURCE ============ */
+    .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2.2vw, 24px); }
+    .proj { display: flex; flex-direction: column; }
+    .proj-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 13px; }
+    .proj h3 { font-family: var(--font-head); font-weight: 700; font-size: 1.22rem; letter-spacing: 0.03em; }
+    .proj-mod { font-family: var(--font-mono); font-weight: 600; font-size: 10px; letter-spacing: 0.12em; color: var(--ink-faint); white-space: nowrap; padding-top: 5px; }
+    .proj-stars {
+      display: inline-flex; align-items: center; gap: 7px; margin-bottom: 12px;
+      font-family: var(--font-mono); font-weight: 700; font-size: 13px; color: var(--orange);
+    }
+    .proj-stars i { font-size: 11px; }
+    .proj p { color: var(--ink-dim); font-size: 0.9rem; line-height: 1.75; flex: 1; }
+    .proj .chip-row { margin-top: 16px; }
+
+    /* ============ 04 VISUAL ARCHIVE ============ */
+    .vcg {
+      display: grid; grid-template-columns: minmax(240px, 340px) 1fr;
+      gap: 0; margin-bottom: clamp(22px, 3vw, 30px); overflow: hidden;
+    }
+    .vcg-img { position: relative; background: #0a0c10; min-height: 250px; }
+    .vcg-img img { width: 100%; height: 100%; object-fit: cover; }
+    .vcg-body { padding: clamp(22px, 3vw, 34px); display: flex; flex-direction: column; gap: 15px; }
+    .vcg-body h3 { font-family: var(--font-head); font-weight: 700; font-size: clamp(1.3rem, 2.4vw, 1.7rem); letter-spacing: 0.04em; text-transform: uppercase; }
+    .vcg-body .desc { color: var(--ink-dim); font-size: 0.94rem; line-height: 1.8; max-width: 62ch; }
+    .vcg-stats { display: flex; flex-wrap: wrap; border: 1px dashed var(--line-strong); width: fit-content; }
+    .vcg-stat { padding: 11px 20px; }
+    .vcg-stat + .vcg-stat { border-left: 1px dashed var(--line-strong); }
+    .vcg-stat b { display: block; font-family: var(--font-display); font-weight: 400; font-size: 1.3rem; color: var(--ink); }
+    .vcg-stat span { font-family: var(--font-mono); font-weight: 600; font-size: 9.5px; letter-spacing: 0.14em; color: var(--ink-faint); text-transform: uppercase; }
+    .vcg-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: auto; }
+    .award {
+      display: inline-flex; align-items: center; gap: 9px;
+      border: 1px solid rgba(255, 122, 28, 0.45);
+      background: var(--orange-soft); color: var(--orange);
+      padding: 9px 15px; font-family: var(--font-mono); font-weight: 700; font-size: 11px;
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    html[data-theme="light"] .award { border-color: rgba(214, 88, 12, 0.45); }
+    .press { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.08em; color: var(--ink-faint); line-height: 1.9; text-transform: uppercase; }
+
+    /* 精选大图 works showcase */
+    .works-showcase { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 2.2vw, 24px); }
+    .works-showcase a { display: block; text-decoration: none; height: 100%; }
+    .photo-frame {
+      position: relative; background: var(--bg-soft); border: 1px solid var(--line);
+      transition: border-color 0.25s, transform 0.25s var(--ease); overflow: hidden;
+      height: 100%; display: flex; flex-direction: column;
+    }
+    .works-showcase a:hover .photo-frame { border-color: rgba(255, 122, 28, 0.45); transform: translateY(-3px); }
+    html[data-theme="light"] .works-showcase a:hover .photo-frame { border-color: rgba(214, 88, 12, 0.45); }
+    .photo-frame img { width: 100%; height: auto; display: block; transition: transform 0.45s var(--ease), filter 0.3s; }
+    .works-showcase a:hover .photo-frame img { transform: scale(1.03); }
+    .photo-cap {
+      display: flex; justify-content: space-between; align-items: center; gap: 8px;
+      padding: 10px 14px; border-top: 1px solid var(--line); margin-top: auto;
+      font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-dim);
+    }
+    .photo-cap .no { color: var(--orange); }
+
+    /* 作品集跳转条 portfolio CTA bar */
+    .cta-bar {
+      border: 1px dashed var(--line-strong);
+      padding: clamp(18px, 3vw, 28px) clamp(20px, 3.5vw, 30px);
+      display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap;
+    }
+    .cta-bar .cb-txt {
+      font-family: var(--font-mono); font-weight: 700; font-size: 12px;
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-dim);
+    }
+    .cta-bar .cb-txt b { color: var(--orange); font-size: 1.05em; }
+
+    /* ============ 05 PORTFOLIO 2026 ============ */
+    .pf-card { position: relative; overflow: hidden; min-height: 460px; display: flex; align-items: flex-end; }
+    .pf-bg { position: absolute; inset: 0; z-index: 0; }
+    .pf-bg img { width: 100%; height: 100%; object-fit: cover; }
+    .pf-bg::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(8, 9, 13, 0.95) 8%, rgba(8, 9, 13, 0.55) 45%, rgba(8, 9, 13, 0.2) 80%);
+    }
+    .pf-body { position: relative; z-index: 2; padding: clamp(24px, 4vw, 44px); width: 100%; }
+    .pf-kicker {
+      font-family: var(--font-mono); font-weight: 700; font-size: 11px;
+      letter-spacing: 0.2em; color: var(--orange); text-transform: uppercase; margin-bottom: 12px;
+    }
+    .pf-body h3 {
+      font-family: var(--font-display); font-weight: 400;
+      font-size: clamp(1.8rem, 4.5vw, 3.2rem); line-height: 1.05;
+      color: #fff; text-transform: uppercase; letter-spacing: 0.015em; margin-bottom: 14px;
+      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.4);
+    }
+    .pf-body h3 .lang-zh { font-family: var(--font-head); font-weight: 900; letter-spacing: 0.05em; }
+    .pf-body .desc { color: rgba(240, 236, 226, 0.86); font-size: 0.96rem; line-height: 1.8; max-width: 68ch; margin-bottom: 20px; text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45); }
+    .pf-stats { display: flex; flex-wrap: wrap; border: 1px dashed rgba(240, 235, 220, 0.32); width: fit-content; margin-bottom: 20px; }
+    .pf-stat { padding: 10px 20px; }
+    .pf-stat + .pf-stat { border-left: 1px dashed rgba(240, 235, 220, 0.32); }
+    .pf-stat b { display: block; font-family: var(--font-display); font-weight: 400; font-size: 1.35rem; color: var(--orange); }
+    .pf-stat span { font-family: var(--font-mono); font-weight: 600; font-size: 9.5px; letter-spacing: 0.15em; color: rgba(240, 235, 220, 0.75); text-transform: uppercase; }
+    .pf-chapters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+    .pf-ch { border: 1px solid rgba(240, 235, 220, 0.32); color: rgba(240, 235, 220, 0.88); background: rgba(10, 12, 16, 0.5); backdrop-filter: blur(4px); }
+    .pf-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    /* ============ 06 FILMS ============ */
+    .film-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2.2vw, 24px); margin-bottom: clamp(26px, 4vh, 40px); }
+    .film-grid.more { grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr)); margin-bottom: 0; }
+    .film { display: flex; flex-direction: column; }
+    .video-frame { position: relative; aspect-ratio: 16 / 9; background: #05060a; overflow: hidden; }
+    .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .video-frame .vload {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-mono); font-weight: 600; font-size: 10.5px;
+      letter-spacing: 0.18em; color: #566070; text-transform: uppercase;
+    }
+    .film-meta { padding: 16px 18px 18px; border-top: 1px solid var(--line); flex: 1; display: flex; flex-direction: column; }
+    .film-no { font-family: var(--font-mono); font-weight: 700; font-size: 10px; letter-spacing: 0.15em; color: var(--orange); margin-bottom: 7px; }
+    .film-meta h3 { font-family: var(--font-head); font-weight: 700; font-size: 1.05rem; letter-spacing: 0.02em; margin-bottom: 7px; }
+    .film-meta p { color: var(--ink-dim); font-size: 0.86rem; line-height: 1.7; }
+    .film-open {
+      margin-top: auto; padding-top: 12px;
+      font-family: var(--font-mono); font-weight: 600; font-size: 10px;
+      letter-spacing: 0.12em; color: var(--ink-faint); text-transform: uppercase;
+      text-decoration: none; display: inline-flex; gap: 6px; align-items: center;
+    }
+    .film-open:hover { color: var(--blue); }
+
+    /* ============ 07 CONTACT ============ */
+    .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(14px, 2vw, 20px); }
+    .contact { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding: clamp(20px, 2.6vw, 28px); }
+    .contact .cico {
+      width: 42px; height: 42px; display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--line-strong); color: var(--orange); font-size: 17px;
+      transition: all 0.25s; flex: none;
+    }
+    .contact:hover .cico { background: var(--orange); color: var(--orange-ink); border-color: var(--orange); }
+    .contact .clabel { font-family: var(--font-mono); font-weight: 600; font-size: 10px; letter-spacing: 0.16em; color: var(--ink-faint); text-transform: uppercase; }
+    .contact .cval {
+      font-family: var(--font-head); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.02em;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;
+      margin-top: auto; align-self: stretch;
     }
 
-    .hero-actions {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
+    .cta { text-align: center; padding-block: clamp(56px, 10vh, 100px) clamp(10px, 2vh, 20px); }
+    .cta-title {
+      font-family: var(--font-display); font-weight: 400;
+      font-size: clamp(2rem, 6.5vw, 4.4rem); line-height: 1.06;
+      text-transform: uppercase; letter-spacing: 0.01em; margin-bottom: 30px;
     }
+    .cta-title .lang-zh { font-family: var(--font-head); font-weight: 900; letter-spacing: 0.08em; }
+    .cta-title em { font-style: normal; color: var(--orange); }
+    .cta .btn { margin-inline: auto; }
 
-    .btn-primary {
-      padding: 14px 32px;
-      background: var(--accent);
-      color: #050505;
-      border-radius: 12px;
-      font-weight: bold;
-      font-size: 1rem;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.3s;
-      box-shadow: 0 0 25px rgba(102, 232, 255, 0.4);
+    /* ============ FOOTER ============ */
+    footer { margin-top: clamp(40px, 7vh, 80px); }
+    .foot-inner {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 26px;
+      padding: 26px 16px 34px;
+      font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint);
+      text-align: center;
     }
-    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 0 35px rgba(102, 232, 255, 0.6); }
+    .foot-inner .sq { width: 9px; height: 9px; background: var(--orange); display: inline-block; }
+    .foot-inner a { color: var(--ink-dim); text-decoration: none; }
+    .foot-inner a:hover { color: var(--orange); }
 
-    .btn-secondary {
-      padding: 14px 32px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: #fff;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 1rem;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.3s;
-    }
-    .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); transform: translateY(-3px); }
+    /* ============ 入场动画 REVEAL ============ */
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.08s; } .d2 { transition-delay: 0.16s; } .d3 { transition-delay: 0.24s; }
 
-
-    /* 右侧 Bento 控制面板 */
-    .hero-right {
-      flex: 1;
-      max-width: 500px;
-      opacity: 0;
-      animation: slideInRight 1s var(--ease-out) 0.2s forwards;
-      /* 增加轻微透视感 */
-      perspective: 1000px;
+    /* ============ 响应式 RESPONSIVE ============ */
+    @media (max-width: 1080px) {
+      .hero-grid { grid-template-columns: 1fr; min-height: 0; gap: 36px; }
+      .profile-grid, .skill-grid { grid-template-columns: 1fr; }
+      .proj-grid { grid-template-columns: 1fr 1fr; }
+      .film-grid { grid-template-columns: 1fr 1fr; }
+      .pf-card { min-height: 400px; }
     }
-
-    .stats-card {
-      background: linear-gradient(145deg, rgba(20, 24, 34, 0.9) 0%, rgba(10, 12, 16, 0.95) 100%);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 24px;
-      padding: 35px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.1);
-      backdrop-filter: blur(20px);
-      /* 悬浮呼吸动画 */
-      animation: floatBreath 6s ease-in-out infinite;
+    @media (max-width: 760px) {
+      .nav { display: none; }
+      .topbar { height: 56px; }
+      .hero { padding-top: 56px; }
+      .proj-grid, .film-grid, .contact-grid { grid-template-columns: 1fr; }
+      .works-showcase { grid-template-columns: 1fr; }
+      .vcg { grid-template-columns: 1fr; }
+      .vcg-img { min-height: 210px; }
+      .hero-actions .btn { flex: 1 1 auto; justify-content: center; }
+      .pf-card { min-height: 340px; }
+      .cta-bar { flex-direction: column; text-align: center; justify-content: center; }
+      .hud::before { animation: none; }
     }
-
-    .stats-tags {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 25px;
-      flex-wrap: wrap;
+    @media (max-width: 400px) {
+      .brand .bname { display: none; }
     }
-    .stats-tags span {
-      padding: 4px 12px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 8px;
-      font-size: 0.8rem;
-      color: var(--text-dim);
+    /* 平板竖屏 portrait tablet */
+    @media (min-width: 761px) and (max-width: 1080px) and (orientation: portrait) {
+      .hero-grid { padding-block: 52px; }
     }
-    .stats-tags span.highlight { color: var(--accent); background: var(--accent-dim); border-color: rgba(102, 232, 255, 0.2); }
-
-    .stats-heading {
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: #fff;
-      margin: 0 0 15px 0;
-    }
-
-    .stats-sub {
-      font-size: 0.95rem;
-      color: var(--text-dim);
-      line-height: 1.6;
-      margin-bottom: 30px;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-    }
-
-    .stat-box {
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.03);
-      border-radius: 16px;
-      padding: 20px;
-      transition: all 0.3s;
-    }
-    .stat-box:hover {
-      background: rgba(255, 255, 255, 0.05);
-      border-color: rgba(102, 232, 255, 0.2);
-      transform: translateY(-2px);
-    }
-    
-    .stat-num {
-      font-size: 2rem;
-      font-weight: 900;
-      color: #fff;
-      margin-bottom: 5px;
-    }
-    .stat-label {
-      font-size: 0.75rem;
-      color: var(--text-dim);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    /* 进场与悬浮动画 */
-    @keyframes slideInLeft {
-      from { opacity: 0; transform: translateX(-40px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-    @keyframes slideInRight {
-      from { opacity: 0; transform: translateX(40px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-    @keyframes floatBreath {
-      0% { transform: translateY(0px); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-      50% { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(102,232,255,0.1); }
-      100% { transform: translateY(0px); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-    }
-
-    /* 移动端适配 (竖向排列) */
-    @media (max-width: 992px) {
-      .hero {
-        flex-direction: column;
-        justify-content: center;
-        text-align: left; /* 保持左对齐比较现代 */
-        padding-top: 100px;
-        gap: 40px;
+    /* 手机横屏 landscape phone */
+    @media (orientation: landscape) and (max-height: 640px) and (pointer: coarse) {
+      .hero-grid {
+        grid-template-columns: 1.05fr 0.95fr; min-height: 0;
+        padding-block: 74px 34px; gap: 26px; align-items: center;
       }
-      .hero-left, .hero-right {
-        max-width: 100%;
-        width: 100%;
-      }
-      .stats-card {
-        animation: none; /* 移动端关闭悬浮动画防止性能问题 */
-      }
+      .hero-title { font-size: clamp(2.2rem, 6.5vh, 3.6rem); }
+      .hero-bio { margin-bottom: 18px; font-size: 0.92rem; }
+      .idrows { display: none; }
     }
-    @media (max-width: 480px) {
-      .hero-title { font-size: 3.2rem; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } /* 保持2列但缩小间距 */
-      .stat-box { padding: 15px; }
-      .stat-num { font-size: 1.6rem; }
-      .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+    /* 大屏 large desktop */
+    @media (min-width: 1600px) {
+      .container { max-width: 1400px; }
     }
 
-    /* =========================================
-       通用 Section 样式 (保持原样)
-       ========================================= */
-    .glass-card-normal {
-      background: var(--bg-card); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border); border-radius: 24px;
-      transition: transform 0.3s, border-color 0.3s; overflow: hidden; position: relative;
-    }
-    .glass-card-normal:hover { transform: translateY(-3px); border-color: rgba(102, 232, 255, 0.4); }
-
-    .card-bg-img { position: absolute; inset: 0; z-index: 0; opacity: 0.25; background-size: cover; background-position: center; transition: opacity 0.4s; }
-    .glass-card-normal:hover .card-bg-img { opacity: 0.4; }
-    .card-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(to top, rgba(3,4,7,0.9) 10%, rgba(3,4,7,0.4) 100%); }
-    .card-content { position: relative; z-index: 2; padding: clamp(20px, 4vw, 35px); }
-
-    .section { padding: clamp(60px, 10vh, 100px) 0; position: relative; }
-    .section-title { font-size: clamp(1.8rem, 4vw, 2.2rem); margin-bottom: 40px; display: flex; align-items: center; gap: 12px; font-weight: 800; }
-
-    .section-bg-icon { position: absolute; font-size: clamp(15rem, 30vw, 30rem); color: rgba(255,255,255,0.04); z-index: -1; pointer-events: none; top: 10%; }
-    .bg-icon-code { right: -5%; transform: rotate(10deg); }
-    .bg-icon-photo { left: -5%; transform: rotate(-10deg); }
-
-    .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 20px; }
-    .bento-wide { grid-column: 1 / -1; }
-    
-    .badge-group { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; }
-    .badge { padding: 4px 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; font-size: 12px; font-weight: 600; }
-    .badge.cyan { background: var(--accent-dim); color: var(--accent); border-color: rgba(102, 232, 255, 0.3); }
-
-    .timeline { position: relative; padding-left: 20px; margin-top: 15px; }
-    .timeline::before { content: ''; position: absolute; left: 0; top: 5px; bottom: 5px; width: 2px; background: linear-gradient(to bottom, var(--accent), transparent); }
-    .timeline-item { position: relative; margin-bottom: 25px; }
-    .timeline-item::before { content: ''; position: absolute; left: -26px; top: 5px; width: 14px; height: 14px; border-radius: 50%; background: var(--bg-dark); border: 2px solid var(--accent); transition: 0.3s; }
-    .timeline-item:hover::before { background: var(--accent); box-shadow: 0 0 10px var(--accent); }
-    .tl-date { color: var(--accent); font-family: monospace; font-weight: 700; margin-bottom: 4px; font-size: 1.1rem; }
-
-    .video-container { width: 100%; aspect-ratio: 16 / 9; background: #000; position: relative; border-bottom: 1px solid var(--glass-border); }
-    .video-container iframe { width: 100%; height: 100%; border: none; position: absolute; inset: 0; }
-
-    .tech-category { margin-bottom: 20px; }
-    .tech-category:last-child { margin-bottom: 0; }
-    .tech-title { font-size: 0.9rem; color: var(--text-dim); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
-
-    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 15px; }
-    .contact-item { padding: 25px; display: flex; flex-direction: column; align-items: center; text-align: center; text-decoration: none; color: inherit; }
-    .contact-icon { font-size: 1.8rem; color: var(--accent); margin-bottom: 10px; }
-
-    @media (max-width: 1024px) { .section-bg-icon { opacity: 0.02; } }
-    @media (max-width: 360px) {
-      .container { padding: 0 10px; } 
-      .badge { font-size: 10px; padding: 4px 8px; }
-      .card-content { padding: 15px; }
-      .timeline { padding-left: 15px; }
-      .timeline-item::before { left: -21px; width: 10px; height: 10px; }
-      .glass-card-normal { border-radius: 16px; }
+    /* ============ 降低动效 REDUCED MOTION ============ */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
     }
   </style>
 </head>
+
 <body data-lang="zh">
 
-  <button class="lang-toggle" onclick="toggleLang()" id="lang-btn">EN</button>
-
-  <!-- 全新重构的 Hero Section -->
-  <header class="hero container">
-    
-    <!-- 左侧：文字与行为按钮 -->
-    <div class="hero-left">
-      <div class="hero-top-tag">
-        <span class="lang-zh">AI × 全栈开发 × 视觉创造</span>
-        <span class="lang-en">AI × Full-Stack × Visual Arts</span>
-      </div>
-
-      <h1 class="hero-title">
-        <span class="lang-zh">徐子墨</span>
-        <span class="lang-en">Zimo Xu</span>
-      </h1>
-
-      <div class="hero-roles">
-        <span class="role-tag"><span class="lang-zh">高三学生</span><span class="lang-en">High Schooler</span></span>
-        <span class="role-tag"><span class="lang-zh">AI 开发者</span><span class="lang-en">AI Developer</span></span>
-        <span class="role-tag"><span class="lang-zh">签约摄影师</span><span class="lang-en">Photographer</span></span>
-      </div>
-
-      <p class="hero-desc">
-        <span class="lang-zh">坚信技术服务于创造力。通过大语言模型重构开发方式，用镜头记录真实光影，致力于将硬核极客技术与温暖美学融合。</span>
-        <span class="lang-en">Believing tech empowers human creativity. Refactoring dev via LLMs, capturing true light with lens. Dedicated to blending hardcore geek tech with warm aesthetics.</span>
-      </p>
-
-      <div class="hero-actions">
-        <a href="#about" class="btn-primary">
-          <i class="fas fa-arrow-down"></i> <span class="lang-zh">开始探索</span><span class="lang-en">Explore</span>
-        </a>
-        <a href="https://github.com/Jimmy-xuzimo" target="_blank" class="btn-secondary">
-          <i class="fab fa-github"></i> GitHub
-        </a>
-      </div>
+  <!-- ============ 顶栏 TOPBAR ============ -->
+  <header class="topbar">
+    <a class="brand" href="#top"><span class="bname">XZM<em>.SYS</em></span></a>
+    <nav class="nav" aria-label="primary">
+      <a href="#profile">PROFILE</a>
+      <a href="#skills">SKILLS</a>
+      <a href="#projects">CODE</a>
+      <a href="#works">WORKS</a>
+      <a href="#films">FILMS</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+    <div class="controls">
+      <button class="tbtn" id="langBtn" onclick="toggleLang()" aria-label="Switch language / 切换语言">
+        <span class="lang-zh">EN</span><span class="lang-en">中文</span>
+      </button>
+      <button class="tbtn" id="themeBtn" onclick="toggleTheme()" aria-label="Toggle color theme / 切换深浅色">
+        <i class="fas fa-moon" id="themeIcon" aria-hidden="true"></i>
+      </button>
     </div>
-
-    <!-- 右侧：Bento 数据控制面板 -->
-    <div class="hero-right">
-      <div class="stats-card">
-        <div class="stats-tags">
-          <span class="highlight">Vibe Coding</span>
-          <span>React</span>
-          <span>TypeScript</span>
-        </div>
-        
-        <h3 class="stats-heading">
-          <span class="lang-zh">构建未来感数字作品</span>
-          <span class="lang-en">Build Futuristic Digital Works</span>
-        </h3>
-        
-        <p class="stats-sub">
-          <span class="lang-zh">热爱 AI、前端设计、摄影与视觉叙事，专注于创造具有科技感与情绪表达的数字体验。</span>
-          <span class="lang-en">Passionate about AI, frontend, photography & storytelling. Focusing on digital experiences with tech and emotion.</span>
-        </p>
-
-        <!-- 数据矩阵 (完美提炼你的四大核心指标) -->
-        <div class="stats-grid">
-          <div class="stat-box">
-            <div class="stat-num">225+</div>
-            <div class="stat-label">GitHub Commits</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-num">37k+</div>
-            <div class="stat-label">Open Source Stars</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-num">12k+</div>
-            <div class="stat-label">Photo Views</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-num">2026</div>
-            <div class="stat-label">Graduation</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </header>
 
-  <!-- 主体内容 (以下全部保留之前的设计，仅修改class名为 glass-card-normal 以防样式冲突) -->
-  <main class="container">
-    
-    <!-- 个人档案与时间轴 -->
-    <section class="section" id="about">
-      <h2 class="section-title"><i class="fas fa-fingerprint"></i> <span class="lang-zh">个人档案</span><span class="lang-en">Profile</span></h2>
-      <div class="bento-grid">
-        
-        <div class="glass-card-normal card-content">
-            <div class="badge-group">
-                <span class="badge"><i class="fas fa-map-marker-alt"></i> 浙江·杭州</span>
-                <span class="badge"><i class="fas fa-school"></i> 浙江大学附属中学</span>
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <div class="hero-eyebrow">
+          <span class="lang-en">AI × FULL-STACK × VISUAL ARTS // SYS.2026</span>
+          <span class="lang-zh">AI × 全栈开发 × 视觉创造 // 系统.2026</span>
+        </div>
+        <h1 class="hero-title">
+          <span class="en">ZIMO <span class="stroke">XU</span></span>
+          <span class="zh">徐子墨</span>
+        </h1>
+        <div class="hero-roles">
+          <span class="chip o"><span class="lang-en">CUCN STUDENT '26</span><span class="lang-zh">南京传媒学院 '26</span></span>
+          <span class="chip"><span class="lang-en">AI DEVELOPER</span><span class="lang-zh">AI 开发者</span></span>
+          <span class="chip"><span class="lang-en">VCG PHOTOGRAPHER</span><span class="lang-zh">签约摄影师</span></span>
+          <span class="chip"><span class="lang-en">FILMMAKER</span><span class="lang-zh">影像创作者</span></span>
+        </div>
+        <p class="hero-bio">
+          <span class="lang-en">I believe technology serves creativity — refactoring the way we build with large language models, chasing true light through the lens, and fusing hardcore geek engineering with warm visual storytelling.</span>
+          <span class="lang-zh">坚信技术服务于创造力。通过大语言模型重构开发方式，用镜头记录真实光影，致力于将硬核极客技术与温暖美学融合。</span>
+        </p>
+        <div class="hero-actions">
+          <a href="#profile" class="btn btn-solid">
+            <span class="lang-en">EXPLORE</span><span class="lang-zh">开始探索</span>
+            <i class="fas fa-arrow-down" aria-hidden="true"></i>
+          </a>
+          <a href="https://github.com/Jimmy-xuzimo" target="_blank" rel="noopener" class="btn btn-ghost">
+            <i class="fab fa-github" aria-hidden="true"></i> GITHUB
+          </a>
+          <a href="https://portfolio-2026-five-blond-35.vercel.app/" target="_blank" rel="noopener" class="btn btn-blue">
+            <span class="lang-en">PORTFOLIO</span><span class="lang-zh">作品集</span>
+            <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+
+      <aside class="hero-right">
+        <div class="hud" data-corners="" data-cx-done="1">
+          <div class="hud-head">
+            <span class="id">ID://<em>XU·ZIMO</em></span>
+            <span class="hud-status"><span class="lang-en">ONLINE</span><span class="lang-zh">在线</span></span>
+          </div>
+          <div class="hud-body">
+            <div class="vf">
+              <img src="images/avatar_01.jpg" alt="Zimo Xu portrait / 徐子墨形象照" loading="eager" decoding="async">
+              <span class="rec">REC</span>
+              <span class="meta">AF · F2.8 · ISO400</span>
             </div>
-            <h3 style="font-size: 1.5rem; margin-top: 10px;"><span class="lang-zh">关于我</span><span class="lang-en">About Me</span></h3>
-            <p style="color: var(--text-dim); line-height: 1.8;">
-              <span class="lang-zh">我是一名来自杭州的高三学生，对技术开发与视觉创造充满热情。2025 年，我从零基础踏入了 Vibe Coding（自然语言编程）的世界。作为一名 AI 时代的学习者，我擅长利用大语言模型辅助全栈开发。无论是开发应用、折腾个人 NAS、还是航拍创作，我始终热衷于创造有生命力的数字作品。</span>
-              <span class="lang-en">A senior high school student from Hangzhou, passionate about tech and visuals. Started Vibe Coding from scratch in 2025. Excels at using LLMs for full-stack dev. Whether coding apps, configuring NAS, or shooting aerials, I love creating dynamic digital works.</span>
+            <div class="idrows">
+              <div class="idrow"><span class="k">LOC</span><span class="v"><span class="lang-en">HANGZHOU → NANJING</span><span class="lang-zh">杭州 → 南京</span></span></div>
+              <div class="idrow"><span class="k">EDU</span><span class="v"><span class="lang-en">CUCN · <span class="hi">2026.09—</span></span><span class="lang-zh">南京传媒学院 · <span class="hi">2026.09—</span></span></span></div>
+              <div class="idrow"><span class="k">FOCUS</span><span class="v">AI × PHOTO × FILM</span></div>
+            </div>
+          </div>
+        <i class="cx cx-tl" aria-hidden="true"></i><i class="cx cx-tr" aria-hidden="true"></i><i class="cx cx-bl" aria-hidden="true"></i><i class="cx cx-br" aria-hidden="true"></i></div>
+      </aside>
+    </div>
+    <div class="hazard" aria-hidden="true"></div>
+  </section>
+
+  <main>
+    <!-- ============ 01 PROFILE ============ -->
+    <section class="section" id="profile">
+      <div class="container">
+        <div class="sec-head reveal in">
+          <span class="sec-no">01</span>
+          <h2 class="sec-title"><span class="lang-en">Profile</span><span class="lang-zh">个人档案</span></h2>
+          <span class="sec-meta">// BIO.LOG</span>
+        </div>
+
+        <div class="profile-grid">
+          <div class="panel panel-pad about reveal in" data-corners="" data-cx-done="1">
+            <div class="panel-tag"><span class="lang-en">About Me</span><span class="lang-zh">关于我</span></div>
+            <h3><span class="lang-en">Geek engineer's mind, photographer's eye.</span><span class="lang-zh">极客的工程思维，摄影师之眼。</span></h3>
+            <p>
+              <span class="lang-en">A first-year undergraduate at Communication University of Nanjing (CUCN, enrolled September 2026), originally from Hangzhou. Passionate about technology and visual creation — I stepped into the world of Vibe Coding (natural-language programming) from zero in 2025, and now excel at LLM-assisted full-stack development. Former head of the school TV station and head of the PR &amp; Liaison Department of the student union at The High School Attached to Zhejiang University. VCG / 500px contract photographer, Tuchong contributor, drone pilot, pianist (Level 10), and Bilibili video creator.</span>
+              <span class="lang-zh">南京传媒学院 2026 级本科生（2026 年 9 月入学），来自浙江杭州。对技术开发与视觉创造充满热情——2025 年从零踏入 Vibe Coding（自然语言编程）的世界，现擅长以大语言模型辅助全栈开发。曾任浙江大学附属中学电视台台长、学生会宣传联络部部长。视觉中国 / 500px 签约摄影师、图虫供稿人、无人机飞手、钢琴十级、B 站影像创作者。</span>
             </p>
-        </div>
-
-        <div class="glass-card-normal card-content">
-            <h3 style="margin-top: 0; font-size: 1.5rem;"><i class="fas fa-history" style="color:var(--accent);"></i> <span class="lang-zh">成长时间轴</span><span class="lang-en">Timeline</span></h3>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="tl-date">2008 / 2020 / 2023</div>
-                    <div style="font-size: 0.95rem; color:var(--text-dim);"><span class="lang-zh">出生 / 小学毕业 / 初中毕业。</span><span class="lang-en">Born / Primary / Middle school graduation.</span></div>
-                </div>
-                <div class="timeline-item">
-                    <div class="tl-date">2025.01</div>
-                    <div style="font-size: 0.95rem; color:var(--text-dim);"><span class="lang-zh">接触 Vibe Coding，踏入 AI 开发领域。</span><span class="lang-en">Started Vibe Coding, entering AI dev.</span></div>
-                </div>
-                <div class="timeline-item" style="margin-bottom: 0;">
-                    <div class="tl-date">2026.06</div>
-                    <div style="font-size: 0.95rem; color:var(--text-dim);"><span class="lang-zh">高中毕业，迎接技术与艺术的征途。</span><span class="lang-en">High school graduation, ready for new journeys.</span></div>
-                </div>
+            <p>
+              <span class="lang-en">Whether building apps, tinkering with my home NAS, or shooting aerials at golden hour — I am always creating digital works that feel alive.</span>
+              <span class="lang-zh">无论是开发应用、折腾个人 NAS，还是在黄金时刻按下航拍快门——我始终热衷于创造有生命力的数字作品。</span>
+            </p>
+            <div class="chip-row">
+              <span class="chip o"><i class="fas fa-location-dot" aria-hidden="true"></i><span class="lang-en">HANGZHOU, CN</span><span class="lang-zh">浙江 · 杭州</span></span>
+              <span class="chip b"><i class="fas fa-graduation-cap" aria-hidden="true"></i><span class="lang-en">CUCN 2026.09—</span><span class="lang-zh">南京传媒学院 2026.09—</span></span>
+              <span class="chip"><i class="fas fa-camera" aria-hidden="true"></i><span class="lang-en">VCG / 500px PRO</span><span class="lang-zh">视觉中国 / 500px 签约</span></span>
+              <span class="chip"><i class="fas fa-music" aria-hidden="true"></i><span class="lang-en">PIANO LV.10</span><span class="lang-zh">钢琴十级</span></span>
+              <span class="chip"><i class="fas fa-flag" aria-hidden="true"></i><span class="lang-en">CYL MEMBER</span><span class="lang-zh">共青团员</span></span>
+              <span class="chip"><i class="fas fa-tv" aria-hidden="true"></i><span class="lang-en">TV STATION LEAD '23–'26</span><span class="lang-zh">校电视台台长 '23–'26</span></span>
+              <span class="chip"><i class="fas fa-bullhorn" aria-hidden="true"></i><span class="lang-en">PR DEPT HEAD</span><span class="lang-zh">学生会宣传联络部部长</span></span>
             </div>
+          <i class="cx cx-tl" aria-hidden="true"></i><i class="cx cx-tr" aria-hidden="true"></i><i class="cx cx-bl" aria-hidden="true"></i><i class="cx cx-br" aria-hidden="true"></i></div>
+
+          <div class="panel panel-pad reveal d1 in" data-corners="" data-cx-done="1">
+            <div class="panel-tag"><span class="lang-en">Timeline</span><span class="lang-zh">成长时间轴</span></div>
+            <div class="tl">
+              <div class="tl-item">
+                <div class="tl-date">2008</div>
+                <div class="tl-txt"><span class="lang-en">Born in Hangzhou.</span><span class="lang-zh">出生于杭州。</span></div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-date">2025.01</div>
+                <div class="tl-txt"><span class="lang-en">Started exploring Vibe Coding and AI development.</span><span class="lang-zh">开始接触 Vibe Coding 和 AI 开发。</span></div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-date">2026.06</div>
+                <div class="tl-txt"><span class="lang-en">Graduated from The High School Attached to Zhejiang University.</span><span class="lang-zh">于浙江大学附属中学毕业。</span></div>
+              </div>
+              <div class="tl-item now">
+                <div class="tl-date">2026.09 <span class="new-chip">NEW</span></div>
+                <div class="tl-txt"><span class="lang-en">Enrolled at Communication University of Nanjing (CUCN).</span><span class="lang-zh">进入南京传媒学院。</span></div>
+              </div>
+            </div>
+          <i class="cx cx-tl" aria-hidden="true"></i><i class="cx cx-tr" aria-hidden="true"></i><i class="cx cx-bl" aria-hidden="true"></i><i class="cx cx-br" aria-hidden="true"></i></div>
         </div>
       </div>
     </section>
 
-    <!-- 开发技能与项目矩阵 -->
-    <section class="section" id="projects-section">
-      <i class="fas fa-microchip section-bg-icon bg-icon-code"></i>
-      
-      <h2 class="section-title"><i class="fas fa-code"></i> <span class="lang-zh">极客开发与开源</span><span class="lang-en">Geek & Open Source</span></h2>
-      <div class="bento-grid">
-        
-        <div class="glass-card-normal bento-wide card-content" style="display: flex; flex-wrap: wrap; gap: 30px;">
-            <div style="flex: 1; min-width: 250px;">
-                <h3 style="margin-top: 0; font-size: 1.5rem;"><span class="lang-zh">核心驱动引擎</span><span class="lang-en">Core Drive Engine</span></h3>
-                <p style="color: var(--text-dim); font-size: 0.95rem; line-height: 1.6;">
-                    <span class="lang-zh">熟练运用自然语言编程（Vibe Coding）重塑开发范式。过去一年在 GitHub 上贡献了超过 225 次代码，实现从概念到落地的极速部署。</span>
-                    <span class="lang-en">Reshaping dev paradigms via Vibe Coding. Over 225 GitHub commits in the past year, ensuring rapid deployment from concept to reality.</span>
-                </p>
-            </div>
-            
-            <div style="flex: 2; display: flex; flex-direction: column; justify-content: center;">
-                <div class="tech-category">
-                    <div class="tech-title">AI Models (大语言模型)</div>
-                    <div class="badge-group">
-                        <span class="badge cyan">Gemini</span><span class="badge cyan">ChatGPT</span><span class="badge cyan">Claude</span><span class="badge cyan">Kimi</span>
-                    </div>
-                </div>
-                <div class="tech-category">
-                    <div class="tech-title">Development Stack (核心技术栈)</div>
-                    <div class="badge-group">
-                        <span class="badge">TypeScript</span><span class="badge">React</span><span class="badge">Vite</span><span class="badge">Tailwind CSS</span><span class="badge">Python</span><span class="badge">Flask</span><span class="badge">Node.js</span>
-                    </div>
-                </div>
-                <div class="tech-category">
-                    <div class="tech-title">Software & Infra (软件与基建)</div>
-                    <div class="badge-group">
-                        <span class="badge">Cursor</span><span class="badge">Trae</span><span class="badge">Google AI Studio</span><span class="badge">Feiniu NAS (飞牛)</span>
-                    </div>
-                </div>
-            </div>
+    <!-- ============ 02 SKILLS ============ -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="sec-head reveal in">
+          <span class="sec-no">02</span>
+          <h2 class="sec-title"><span class="lang-en">Skill Matrix</span><span class="lang-zh">技能矩阵</span></h2>
+          <span class="sec-meta">// SKILL.MTX</span>
         </div>
 
-        <a href="https://github.com/openclaw/openclaw" target="_blank" class="glass-card-normal" style="text-decoration:none; color:inherit; display:block;">
-          <div class="card-bg-img" style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800');"></div>
-          <div class="card-overlay"></div>
-          
-          <div class="card-content">
-            <div class="badge-group">
-                <span class="badge cyan"><i class="fas fa-code-branch"></i> 开源贡献者</span>
-                <span class="badge"><i class="fas fa-star" style="color: gold;"></i> 37.2k+</span>
+        <div class="skill-grid">
+          <div class="panel panel-pad skill-lead reveal in" data-corners="" data-cx-done="1">
+            <div class="panel-tag"><span class="lang-en">Core Drive Engine</span><span class="lang-zh">核心驱动引擎</span></div>
+            <p class="big"><span class="lang-en">Vibe Coding — building at the speed of thought.</span><span class="lang-zh">Vibe Coding——以思维的速度构建。</span></p>
+            <p style="margin-top: 10px;">
+              <span class="lang-en">Reshaping the development paradigm through natural-language programming. Over 225 GitHub commits in the past year, shipping from concept to deployment at full speed.</span>
+              <span class="lang-zh">熟练运用自然语言编程（Vibe Coding）重塑开发范式。过去一年在 GitHub 上贡献了超过 225 次代码，实现从概念到落地的极速部署。</span>
+            </p>
+            <div class="chip-row">
+              <span class="chip o"><i class="fas fa-bolt" aria-hidden="true"></i>VIBE CODING</span>
+              <span class="chip b"><i class="fas fa-code-branch" aria-hidden="true"></i>225+ COMMITS / YR</span>
             </div>
-            <h3 style="font-size: 1.4rem; margin-top:10px;">OpenClaw</h3>
-            <p class="lang-zh" style="color:var(--text-dim); font-size:0.95rem;">高星标的开源跨平台个人 AI 助手，支持本地运行接入多种 IM。作为贡献者参与功能开发与代码合并。</p>
-            <p class="lang-en" style="color:var(--text-dim); font-size:0.95rem;">Highly starred open-source AI assistant. Contributed to feature dev and code merging.</p>
-          </div>
-        </a>
+          <i class="cx cx-tl" aria-hidden="true"></i><i class="cx cx-tr" aria-hidden="true"></i><i class="cx cx-bl" aria-hidden="true"></i><i class="cx cx-br" aria-hidden="true"></i></div>
 
-        <a href="https://github.com/Jimmy-xuzimo/gaokao-vocab" target="_blank" class="glass-card-normal" style="text-decoration:none; color:inherit; display:block;">
-          <div class="card-content">
-            <div class="badge-group">
-                <span class="badge">个人项目</span>
-                <span class="badge">TypeScript</span>
+          <div class="panel panel-pad reveal d1 in" data-corners="" data-cx-done="1">
+            <div class="tag-cat">
+              <h4><span class="lang-en">AI MODELS</span><span class="lang-zh">AI 模型</span><span class="zh-sub lang-zh">// 大语言模型</span></h4>
+              <div class="tags">
+                <span class="tag ai">Gemini</span><span class="tag ai">ChatGPT</span><span class="tag ai">Claude</span><span class="tag ai">Kimi</span>
+              </div>
             </div>
-            <h3 style="font-size: 1.4rem; margin-top:10px;">gaokao-vocab</h3>
-            <p class="lang-zh" style="color:var(--text-dim); font-size:0.95rem;">独立开发的高考词汇学习应用，内置 3817 词，支持单词卡片、每日测验与学习数据可视化。</p>
-            <p class="lang-en" style="color:var(--text-dim); font-size:0.95rem;">TS built vocabulary app for Gaokao, including 3817 words with quiz and data viz.</p>
-          </div>
-        </a>
-
-        <a href="https://github.com/Jimmy-xuzimo/Chronos-Monitoring" target="_blank" class="glass-card-normal" style="text-decoration:none; color:inherit; display:block;">
-          <div class="card-content">
-            <div class="badge-group">
-                <span class="badge">个人项目</span>
-                <span class="badge">Python</span>
+            <div class="tag-cat">
+              <h4><span class="lang-en">DEV STACK</span><span class="lang-zh">开发技术栈</span><span class="zh-sub lang-zh">// 核心技术</span></h4>
+              <div class="tags">
+                <span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Vite</span><span class="tag">Tailwind CSS</span><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">Node.js</span>
+              </div>
             </div>
-            <h3 style="font-size: 1.4rem; margin-top:10px;">Chronos-Monitoring</h3>
-            <p class="lang-zh" style="color:var(--text-dim); font-size:0.95rem;">工业科幻风格的 Linux/NAS 服务器监控面板，基于 Python 开发，可实时监控硬件与网络。</p>
-            <p class="lang-en" style="color:var(--text-dim); font-size:0.95rem;">Sci-fi style NAS/Linux monitoring dashboard developed in Python.</p>
-          </div>
-        </a>
-
+            <div class="tag-cat">
+              <h4><span class="lang-en">SOFTWARE &amp; INFRA</span><span class="lang-zh">软件与基建</span></h4>
+              <div class="tags">
+                <span class="tag">Cursor</span><span class="tag">Trae</span><span class="tag">Google AI Studio</span><span class="tag"><span class="lang-en">Feiniu NAS</span><span class="lang-zh">飞牛 NAS</span></span>
+              </div>
+            </div>
+          <i class="cx cx-tl" aria-hidden="true"></i><i class="cx cx-tr" aria-hidden="true"></i><i class="cx cx-bl" aria-hidden="true"></i><i class="cx cx-br" aria-hidden="true"></i></div>
+        </div>
       </div>
     </section>
 
-    <!-- 视觉与摄影多媒体 -->
-    <section class="section">
-      <i class="fas fa-video section-bg-icon bg-icon-photo"></i>
+    <!-- ============ 03 OPEN SOURCE ============ -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="sec-no">03</span>
+          <h2 class="sec-title"><span class="lang-en">Geek &amp; Open Source</span><span class="lang-zh">极客开发与开源</span></h2>
+          <span class="sec-meta">// OSS.REPO</span>
+        </div>
 
-      <h2 class="section-title"><i class="fas fa-camera-retro"></i> <span class="lang-zh">视觉创造与多媒体</span><span class="lang-en">Visual Arts & Media</span></h2>
-      <div class="bento-grid">
-        
-        <div class="glass-card-normal bento-wide">
-            <div class="card-bg-img" style="background-image: url('https://images.unsplash.com/photo-1473081556163-2a17de81fc97?auto=format&fit=crop&q=80&w=1200');"></div>
-            <div class="card-overlay"></div>
-            
-            <div class="card-content" style="display: flex; flex-wrap: wrap; gap: 20px;">
-                <div style="flex: 1; min-width: 280px;">
-                    <div class="badge-group">
-                        <span class="badge cyan"><i class="fas fa-camera"></i> 视觉中国 500px 签约</span>
-                        <span class="badge cyan"><i class="fas fa-camera"></i> 图虫签约</span>
-                        <span class="badge"><i class="fas fa-plane"></i> DJI Mavic 4 Pro</span>
-                    </div>
-                    <h3 style="font-size: 1.6rem; margin-top: 15px;"><span class="lang-zh">专业摄影视界</span><span class="lang-en">Photography Vision</span></h3>
-                    <p style="color:var(--text-dim); font-size:0.95rem; line-height: 1.6;">
-                        <span class="lang-zh">专注风景与人文纪实，用镜头捕捉真实瞬间。热爱无人机航拍，借助 DJI Mavic 4 Pro 探索光影与壮丽景色的视觉极限。</span>
-                        <span class="lang-en">Focusing on landscape and documentary photography. Exploring visual limits of light and grand scenery with drone aerials.</span>
-                    </p>
-                    <a href="https://500px.com.cn/Jimmyzimo" target="_blank" style="display:inline-block; margin-top: 10px; color: var(--accent); font-weight: bold; text-decoration: none;">
-                        Visit 500px Profile <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                <div style="display: flex; gap: 30px; align-items: center; justify-content: flex-start; padding-top: 10px;">
-                    <div><div style="font-size: 2rem; font-weight: 900;">87</div><div style="font-size: 0.8rem; color: var(--text-dim);">FANS</div></div>
-                    <div><div style="font-size: 2rem; font-weight: 900;">12,565</div><div style="font-size: 0.8rem; color: var(--text-dim);">VIEWS</div></div>
-                </div>
+        <div class="proj-grid">
+          <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noopener" class="panel panel-pad proj reveal" data-corners="" data-cx-done="1">
+            <div class="proj-top">
+              <h3>OpenClaw</h3>
+              <span class="proj-mod">MOD.03-A</span>
             </div>
-        </div>
+            <span class="proj-stars"><i class="fas fa-star" aria-hidden="true"></i>37.2K+</span>
+            <p>
+              <span class="lang-en">Highly starred open-source cross-platform personal AI assistant that runs locally and connects to multiple IM platforms. Contributing to feature development and code merging.</span>
+              <span class="lang-zh">高星标的开源跨平台个人 AI 助手，支持本地运行并接入多种 IM。作为贡献者参与功能开发与代码合并。</span>
+            </p>
+            <div class="chip-row">
+              <span class="chip o"><i class="fas fa-code-branch" aria-hidden="true"></i><span class="lang-en">OSS CONTRIBUTOR</span><span class="lang-zh">开源贡献者</span></span>
+              <span class="chip">AI ASSISTANT</span>
+            </div>
+          <i class="cx cx-tl" aria-hidden="true"></i><i class="cx cx-tr" aria-hidden="true"></i><i class="cx cx-bl" aria-hidden="true"></i><i class="cx cx-br" aria-hidden="true"></i></a>
 
-        <div class="glass-card-normal">
-          <div class="video-container">
-            <iframe src="https://player.bilibili.com/player.html?bvid=BV14y411e7qG&page=1&autoplay=0&high_quality=1" allowfullscreen></iframe>
-          </div>
-          <div class="card-content">
-            <h3 style="margin-top:0; font-size:1.2rem;"><span class="lang-zh">原创短片《茫》</span><span class="lang-en">Film "Bewilderment"</span></h3>
-            <p style="font-size:0.9rem; color:var(--text-dim); margin-bottom:0;"><span class="lang-zh">高中生独立完成剧本与摄制，以纯粹镜头语言讲述故事。</span><span class="lang-en">Independently directed short film telling stories through camera language.</span></p>
-          </div>
-        </div>
+          <a href="https://github.com/Jimmy-xuzimo/gaokao-vocab" target="_blank" rel="noopener" class="panel panel-pad proj reveal d1" data-corners="" data-cx-done="1">
+            <div class="proj-top">
+              <h3>gaokao-vocab</h3>
+              <span class="proj-mod">MOD.03-B</span>
+            </div>
+            <span class="proj-stars"><i class="fas fa-book" aria-hidden="true"></i>3817 <span class="lang-en" style="color: var(--ink-faint); font-weight: 600;">WORDS</span><span class="lang-zh" style="color: var(--ink-faint); font-weight: 600;">词</span></span>
+            <p>
+              <span class="lang-en">Independently built vocabulary app for Gaokao with 3,817 words — flashcards, daily quizzes and learning-data visualization.</span>
+              <span class="lang-zh">独立开发的高考词汇学习应用，内置 3817 词，支持单词卡片、每日测验与学习数据可视化。</span>
+            </p>
+            <div class="chip-row">
+              <span class="chip"><span class="lang-en">PERSONAL PROJECT</span><span class="lang-zh">个人项目</span></span>
+              <span class="chip">TypeScript</span>
+            </div>
+          <i class="cx cx-tl" aria-hidden="true"></i><i class="cx cx-tr" aria-hidden="true"></i><i class="cx cx-bl" aria-hidden="true"></i><i class="cx cx-br" aria-hidden="true"></i></a>
 
-        <div class="glass-card-normal">
-          <div class="video-container">
-            <iframe src="https://player.bilibili.com/player.html?bvid=BV1VGtZzBEQR&page=1&autoplay=0&high_quality=1" allowfullscreen></iframe>
-          </div>
-          <div class="card-content">
-            <h3 style="margin-top:0; font-size:1.2rem;"><span class="lang-zh">DJI Mavic 4 Pro 旅拍</span><span class="lang-en">DJI Aerial</span></h3>
-            <p style="font-size:0.9rem; color:var(--text-dim); margin-bottom:0;"><span class="lang-zh">上帝视角，捕捉光影交错的真实瞬间与大自然的壮丽。</span><span class="lang-en">God's eye view. Capturing true moments of light and grand nature.</span></p>
-          </div>
+          <a href="https://github.com/Jimmy-xuzimo/Chronos-Monitoring" target="_blank" rel="noopener" class="panel panel-pad proj reveal d2" data-corners="" data-cx-done="1">
+            <div class="proj-top">
+              <h3>Chronos-Monitoring</h3>
+              <span class="proj-mod">MOD.03-C</span>
+            </div>
+            <span class="proj-stars"><i class="fas fa-server" aria-hidden="true"></i><span class="lang-en">NAS / LINUX</span><span class="lang-zh">NAS / 服务器</span></span>
+            <p>
+              <span class="lang-en">Industrial sci-fi style monitoring dashboard for Linux/NAS servers, built in Python — real-time hardware and network metrics.</span>
+              <span class="lang-zh">工业科幻风格的 Linux/NAS 服务器监控面板，基于 Python 开发，可实时监控硬件与网络。</span>
+            </p>
+            <div class="chip-row">
+              <span class="chip"><span class="lang-en">PERSONAL PROJECT</span><span class="lang-zh">个人项目</span></span>
+              <span class="chip">Python</span>
+            </div>
+          <i class="cx cx-tl" aria-hidden="true"></i><i class="cx cx-tr" aria-hidden="true"></i><i class="cx cx-bl" aria-hidden="true"></i><i class="cx cx-br" aria-hidden="true"></i></a>
         </div>
-
-        <div class="glass-card-normal">
-          <div class="video-container">
-            <iframe src="https://player.bilibili.com/player.html?bvid=BV1eZ421B7cn&page=1&autoplay=0&high_quality=1" allowfullscreen></iframe>
-          </div>
-          <div class="card-content">
-            <h3 style="margin-top:0; font-size:1.2rem;"><span class="lang-zh">《Call of Silence》可视化</span><span class="lang-en">Music Visualization</span></h3>
-            <p style="font-size:0.9rem; color:var(--text-dim); margin-bottom:0;"><span class="lang-zh">特效钢琴演奏，探索听觉律动艺术与视觉特效的融合。</span><span class="lang-en">Piano VFX, exploring the fusion of auditory rhythm and visuals.</span></p>
-          </div>
-        </div>
-
       </div>
     </section>
 
-    <!-- 简洁大气的联系方式 -->
-    <section class="section">
-      <h2 class="section-title"><i class="fas fa-envelope"></i> <span class="lang-zh">联系方式</span><span class="lang-en">Contact Me</span></h2>
-      <div class="contact-grid">
-        <a href="mailto:xuzimojimmy@163.com" class="glass-card-normal contact-item">
-          <i class="fas fa-at contact-icon"></i>
-          <div style="font-size:0.85rem; color:var(--text-dim); margin-bottom: 5px;">EMAIL</div>
-          <div style="font-weight:600; font-size: 0.95rem;">xuzimojimmy@163.com</div>
-        </a>
-        <a href="https://wa.me/8613656635570" target="_blank" class="glass-card-normal contact-item">
-          <i class="fab fa-whatsapp contact-icon"></i>
-          <div style="font-size:0.85rem; color:var(--text-dim); margin-bottom: 5px;">WHATSAPP</div>
-          <div style="font-weight:600; font-size: 0.95rem;">+86 13656635570</div>
-        </a>
-        <a href="https://github.com/Jimmy-xuzimo" target="_blank" class="glass-card-normal contact-item">
-          <i class="fab fa-github contact-icon"></i>
-          <div style="font-size:0.85rem; color:var(--text-dim); margin-bottom: 5px;">GITHUB</div>
-          <div style="font-weight:600; font-size: 0.95rem;">Jimmy-xuzimo</div>
-        </a>
-        <a href="https://space.bilibili.com/1504211198" target="_blank" class="glass-card-normal contact-item">
-          <i class="fab fa-bilibili contact-icon"></i>
-          <div style="font-size:0.85rem; color:var(--text-dim); margin-bottom: 5px;">BILIBILI</div>
-          <div style="font-weight:600; font-size: 0.95rem;">1504211198</div>
-        </a>
+    <!-- ============ 04 VISUAL ARCHIVE ============ -->
+    <section class="section" id="works">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="sec-no">04</span>
+          <h2 class="sec-title"><span class="lang-en">Visual Archive</span><span class="lang-zh">视觉档案</span></h2>
+          <span class="sec-meta">// LENS.VCG</span>
+        </div>
+
+        <div class="panel vcg reveal" data-corners="" data-cx-done="1">
+          <div class="vcg-img">
+            <img src="images/vcg_card.jpg" alt="VCG contract photographer card / 视觉中国签约摄影师名片" loading="lazy" decoding="async">
+          </div>
+          <div class="vcg-body">
+            <div class="panel-tag"><span class="lang-en">Professional Photography</span><span class="lang-zh">专业摄影视界</span></div>
+            <h3><span class="lang-en">VCG Contract Photographer</span><span class="lang-zh">视觉中国签约摄影师</span></h3>
+            <p class="desc">
+              <span class="lang-en">Focusing on landscape and documentary photography, capturing real moments through the viewfinder. A drone pilot exploring the visual limits of light and grand scenery with the DJI Mavic 4 Pro.</span>
+              <span class="lang-zh">专注风景与人文纪实，用镜头捕捉真实瞬间。热爱无人机航拍，借助 DJI Mavic 4 Pro 探索光影与壮丽景色的视觉极限。</span>
+            </p>
+            <div class="vcg-stats">
+              <div class="vcg-stat"><b>87</b><span>FANS</span></div>
+              <div class="vcg-stat"><b>12,565</b><span>VIEWS</span></div>
+              <div class="vcg-stat"><b>150+</b><span><span class="lang-en">WORKS</span><span class="lang-zh">作品</span></span></div>
+            </div>
+            <div class="vcg-foot">
+              <span class="award"><i class="fas fa-award" aria-hidden="true"></i><span class="lang-en">2025 500px ANNUAL · BRONZE</span><span class="lang-zh">2025 500px 年度大赛 · 铜奖</span></span>
+              <a href="https://500px.com.cn/Jimmyzimo" target="_blank" rel="noopener" class="btn btn-solid" style="padding: 11px 20px;">
+                <span class="lang-en">500PX PROFILE</span><span class="lang-zh">500px 主页</span>
+                <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+              </a>
+            </div>
+            <p class="press">
+              <span class="lang-en">PUBLISHED — XINHUA · CHINA EDUCATION ONLINE · HANGZHOU DAILY · ZHEJIANAG TV</span>
+              <span class="lang-zh">作品刊发 — 新华网 · 中国教育在线 · 杭州日报 · 浙江卫视</span>
+            </p>
+            <div class="chip-row" style="margin-top: 0;">
+              <span class="chip o"><i class="fas fa-camera" aria-hidden="true"></i><span class="lang-en">VCG / 500px CONTRACT</span><span class="lang-zh">视觉中国 500px 签约</span></span>
+              <span class="chip b"><i class="fas fa-camera" aria-hidden="true"></i><span class="lang-en">TUCHONG</span><span class="lang-zh">图虫签约</span></span>
+              <span class="chip"><i class="fas fa-plane" aria-hidden="true"></i>DJI MAVIC 4 PRO</span>
+            </div>
+          </div>
+        <i class="cx cx-tl" aria-hidden="true"></i><i class="cx cx-tr" aria-hidden="true"></i><i class="cx cx-bl" aria-hidden="true"></i><i class="cx cx-br" aria-hidden="true"></i></div>
+
+        <div class="works-showcase reveal d1">
+          <a href="https://portfolio-2026-five-blond-35.vercel.app/" target="_blank" rel="noopener">
+            <div class="photo-frame" data-corners="" data-cx-done="1">
+              <img src="images/city_20.jpg" alt="Skyscrapers above the clouds / 云上都市" loading="lazy" decoding="async">
+              <div class="photo-cap"><span class="no">FRM.01</span><span><span class="lang-en">CITY · ABOVE CLOUDS</span><span class="lang-zh">城市 · 云上都市</span></span></div>
+            <i class="cx cx-tl" aria-hidden="true"></i><i class="cx cx-tr" aria-hidden="true"></i><i class="cx cx-bl" aria-hidden="true"></i><i class="cx cx-br" aria-hidden="true"></i></div>
+          </a>
+          <a href="https://portfolio-2026-five-blond-35.vercel.app/" target="_blank" rel="noopener">
+            <div class="photo-frame" data-corners="" data-cx-done="1">
+              <img src="images/nature_01.jpg" alt="Mountain valley village / 山谷村落" loading="lazy" decoding="async">
+              <div class="photo-cap"><span class="no">FRM.02</span><span><span class="lang-en">NATURE · VALLEY VILLAGE</span><span class="lang-zh">自然 · 山谷村落</span></span></div>
+            <i class="cx cx-tl" aria-hidden="true"></i><i class="cx cx-tr" aria-hidden="true"></i><i class="cx cx-bl" aria-hidden="true"></i><i class="cx cx-br" aria-hidden="true"></i></div>
+          </a>
+        </div>
+
+        <div class="cta-bar reveal d2" style="margin-top: clamp(16px, 2.2vw, 24px);">
+          <span class="cb-txt"><b>+148</b> <span class="lang-en">MORE WORKS IN THE PORTFOLIO</span><span class="lang-zh">更多作品收录于作品集</span></span>
+          <a href="https://portfolio-2026-five-blond-35.vercel.app/" target="_blank" rel="noopener" class="btn btn-solid">
+            <span class="lang-en">OPEN PORTFOLIO</span><span class="lang-zh">进入作品集</span>
+            <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
+        </div>
       </div>
     </section>
 
+    <!-- ============ 05 PORTFOLIO 2026 ============ -->
+    <section class="section" id="portfolio">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="sec-no">05</span>
+          <h2 class="sec-title"><span class="lang-en">Portfolio 2026</span><span class="lang-zh">2026 作品集</span></h2>
+          <span class="sec-meta">// WORK.2026</span>
+        </div>
+
+        <div class="panel pf-card reveal" data-corners="" data-cx-done="1">
+          <div class="pf-bg">
+            <img src="images/cover_01.jpg" alt="Portfolio 2026 cover / 作品集封面" loading="lazy" decoding="async">
+          </div>
+          <div class="pf-body">
+            <div class="pf-kicker"><span class="lang-en">LENS · FLIPBOOK PORTFOLIO</span><span class="lang-zh">LENS · 画册式翻页作品集</span></div>
+            <h3>
+              <span class="lang-en">COLLECTING THE WORLD,<br>THROUGH THE LENS</span>
+              <span class="lang-zh">用镜头收藏世界</span>
+            </h3>
+            <p class="desc">
+              <span class="lang-en">A flipbook-style visual portfolio — 150 photographs across 8 chapters, from city grids to the Milky Way, plus 13 films.</span>
+              <span class="lang-zh">画册式翻页作品集——8 大章节、150 张摄影作品，从城市肌理到浩瀚银河，另有 13 部 B 站影像作品。</span>
+            </p>
+            <div class="pf-stats">
+              <div class="pf-stat"><b>150</b><span><span class="lang-en">PHOTOS</span><span class="lang-zh">摄影作品</span></span></div>
+              <div class="pf-stat"><b>13</b><span><span class="lang-en">FILMS</span><span class="lang-zh">影像作品</span></span></div>
+              <div class="pf-stat"><b>8</b><span><span class="lang-en">CHAPTERS</span><span class="lang-zh">章节</span></span></div>
+            </div>
+            <div class="pf-chapters">
+              <span class="chip pf-ch"><span class="lang-en">CITY 62</span><span class="lang-zh">城市 62</span></span>
+              <span class="chip pf-ch"><span class="lang-en">NATURE 42</span><span class="lang-zh">自然 42</span></span>
+              <span class="chip pf-ch"><span class="lang-en">MOMENTS 25</span><span class="lang-zh">活动 25</span></span>
+              <span class="chip pf-ch"><span class="lang-en">HUMANITY 4</span><span class="lang-zh">人文 4</span></span>
+            </div>
+            <div class="pf-actions">
+              <a href="https://portfolio-2026-five-blond-35.vercel.app/" target="_blank" rel="noopener" class="btn btn-solid">
+                <span class="lang-en">OPEN PORTFOLIO</span><span class="lang-zh">进入作品集</span>
+                <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        <i class="cx cx-tl" aria-hidden="true"></i><i class="cx cx-tr" aria-hidden="true"></i><i class="cx cx-bl" aria-hidden="true"></i><i class="cx cx-br" aria-hidden="true"></i></div>
+      </div>
+    </section>
+
+    <!-- ============ 06 FILMS ============ -->
+    <section class="section" id="films">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="sec-no">06</span>
+          <h2 class="sec-title"><span class="lang-en">Film Archive</span><span class="lang-zh">影像档案</span></h2>
+          <span class="sec-meta">// FILM.DB · BILIBILI</span>
+        </div>
+
+        <div class="film-grid">
+          <div class="panel film reveal" data-corners="" data-cx-done="1">
+            <div class="video-frame" data-src="https://player.bilibili.com/player.html?bvid=BV14y411e7qG&amp;page=1&amp;autoplay=0&amp;danmaku=0&amp;high_quality=1">
+              <div class="vload"><span class="lang-en">LOADING PLAYER…</span><span class="lang-zh">播放器加载中…</span></div>
+            </div>
+            <div class="film-meta">
+              <div class="film-no">FLM.01 · <span class="lang-en">FEATURED</span><span class="lang-zh">精选</span></div>
+              <h3><span class="lang-en">"Bewilderment" · Campus Short Film</span><span class="lang-zh">原创短片《茫》</span></h3>
+              <p><span class="lang-en">Independently scripted, directed and edited in high school — telling stories through pure camera language.</span><span class="lang-zh">高中生独立完成剧本与摄制，以纯粹镜头语言讲述故事。</span></p>
+              <a class="film-open" href="https://www.bilibili.com/video/BV14y411e7qG/" target="_blank" rel="noopener"><span class="lang-en">OPEN ON BILIBILI</span><span class="lang-zh">在 B 站打开</span> <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+            </div>
+          <i class="cx cx-tl" aria-hidden="true"></i><i class="cx cx-tr" aria-hidden="true"></i><i class="cx cx-bl" aria-hidden="true"></i><i class="cx cx-br" aria-hidden="true"></i></div>
+
+          <div class="panel film reveal d1" data-corners="" data-cx-done="1">
+            <div class="video-frame" data-src="https://player.bilibili.com/player.html?bvid=BV1VGtZzBEQR&amp;page=1&amp;autoplay=0&amp;danmaku=0&amp;high_quality=1">
+              <div class="vload"><span class="lang-en">LOADING PLAYER…</span><span class="lang-zh">播放器加载中…</span></div>
+            </div>
+            <div class="film-meta">
+              <div class="film-no">FLM.02 · <span class="lang-en">FEATURED</span><span class="lang-zh">精选</span></div>
+              <h3><span class="lang-en">Dalian–Nanjing Travel Film · DJI Aerial</span><span class="lang-zh">DJI Mavic 4 Pro 旅拍 · 大连 &amp; 南京</span></h3>
+              <p><span class="lang-en">God's-eye view — capturing true moments of light and the grandeur of nature.</span><span class="lang-zh">上帝视角，捕捉光影交错的真实瞬间与大自然的壮丽。</span></p>
+              <a class="film-open" href="https://www.bilibili.com/video/BV1VGtZzBEQR/" target="_blank" rel="noopener"><span class="lang-en">OPEN ON BILIBILI</span><span class="lang-zh">在 B 站打开</span> <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+            </div>
+          <i class="cx cx-tl" aria-hidden="true"></i><i class="cx cx-tr" aria-hidden="true"></i><i class="cx cx-bl" aria-hidden="true"></i><i class="cx cx-br" aria-hidden="true"></i></div>
+
+          <div class="panel film reveal d2" data-corners="" data-cx-done="1">
+            <div class="video-frame" data-src="https://player.bilibili.com/player.html?bvid=BV1eZ421B7cn&amp;page=1&amp;autoplay=0&amp;danmaku=0&amp;high_quality=1">
+              <div class="vload"><span class="lang-en">LOADING PLAYER…</span><span class="lang-zh">播放器加载中…</span></div>
+            </div>
+            <div class="film-meta">
+              <div class="film-no">FLM.03 · <span class="lang-en">FEATURED</span><span class="lang-zh">精选</span></div>
+              <h3><span class="lang-en">"Call of Silence" · Music Visualization</span><span class="lang-zh">《Call of Silence》可视化</span></h3>
+              <p><span class="lang-en">Piano performance with VFX — exploring the fusion of auditory rhythm and visual effects.</span><span class="lang-zh">特效钢琴演奏，探索听觉律动艺术与视觉特效的融合。</span></p>
+              <a class="film-open" href="https://www.bilibili.com/video/BV1eZ421B7cn/" target="_blank" rel="noopener"><span class="lang-en">OPEN ON BILIBILI</span><span class="lang-zh">在 B 站打开</span> <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+            </div>
+          <i class="cx cx-tl" aria-hidden="true"></i><i class="cx cx-tr" aria-hidden="true"></i><i class="cx cx-bl" aria-hidden="true"></i><i class="cx cx-br" aria-hidden="true"></i></div>
+        </div>
+
+        <div class="cta-bar reveal" style="margin-top: clamp(26px, 4vh, 40px);">
+          <span class="cb-txt"><b>+11</b> <span class="lang-en">MORE FILMS IN THE PORTFOLIO ARCHIVE</span><span class="lang-zh">更多影像收录于作品集影像档案</span></span>
+          <a href="https://portfolio-2026-five-blond-35.vercel.app/#/157" target="_blank" rel="noopener" class="btn btn-blue">
+            <span class="lang-en">OPEN FILM ARCHIVE</span><span class="lang-zh">打开影像档案</span>
+            <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 07 CONTACT ============ -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="sec-no">07</span>
+          <h2 class="sec-title"><span class="lang-en">Contact</span><span class="lang-zh">联系方式</span></h2>
+          <span class="sec-meta">// COMM.LINK</span>
+        </div>
+
+        <div class="contact-grid">
+          <a href="mailto:xuzimojimmy@163.com" class="panel contact reveal" data-corners="" data-cx-done="1">
+            <span class="cico"><i class="fas fa-at" aria-hidden="true"></i></span>
+            <span class="clabel">EMAIL</span>
+            <span class="cval">xuzimojimmy@163.com</span>
+          <i class="cx cx-tl" aria-hidden="true"></i><i class="cx cx-tr" aria-hidden="true"></i><i class="cx cx-bl" aria-hidden="true"></i><i class="cx cx-br" aria-hidden="true"></i></a>
+          <a href="https://wa.me/8613656635570" target="_blank" rel="noopener" class="panel contact reveal" data-corners="" data-cx-done="1">
+            <span class="cico"><i class="fab fa-whatsapp" aria-hidden="true"></i></span>
+            <span class="clabel">WHATSAPP</span>
+            <span class="cval">+86 136 5663 5570</span>
+          <i class="cx cx-tl" aria-hidden="true"></i><i class="cx cx-tr" aria-hidden="true"></i><i class="cx cx-bl" aria-hidden="true"></i><i class="cx cx-br" aria-hidden="true"></i></a>
+          <a href="https://github.com/Jimmy-xuzimo" target="_blank" rel="noopener" class="panel contact reveal" data-corners="" data-cx-done="1">
+            <span class="cico"><i class="fab fa-github" aria-hidden="true"></i></span>
+            <span class="clabel">GITHUB</span>
+            <span class="cval">Jimmy-xuzimo</span>
+          <i class="cx cx-tl" aria-hidden="true"></i><i class="cx cx-tr" aria-hidden="true"></i><i class="cx cx-bl" aria-hidden="true"></i><i class="cx cx-br" aria-hidden="true"></i></a>
+          <a href="https://space.bilibili.com/1504211198" target="_blank" rel="noopener" class="panel contact reveal" data-corners="" data-cx-done="1">
+            <span class="cico"><i class="fab fa-bilibili" aria-hidden="true"></i></span>
+            <span class="clabel">BILIBILI</span>
+            <span class="cval">space.bilibili.com/1504211198</span>
+          <i class="cx cx-tl" aria-hidden="true"></i><i class="cx cx-tr" aria-hidden="true"></i><i class="cx cx-bl" aria-hidden="true"></i><i class="cx cx-br" aria-hidden="true"></i></a>
+          <a href="https://500px.com.cn/Jimmyzimo" target="_blank" rel="noopener" class="panel contact reveal" data-corners="" data-cx-done="1">
+            <span class="cico"><i class="fas fa-camera-retro" aria-hidden="true"></i></span>
+            <span class="clabel">500PX</span>
+            <span class="cval">500px.com.cn/Jimmyzimo</span>
+          <i class="cx cx-tl" aria-hidden="true"></i><i class="cx cx-tr" aria-hidden="true"></i><i class="cx cx-bl" aria-hidden="true"></i><i class="cx cx-br" aria-hidden="true"></i></a>
+          <a href="https://portfolio-2026-five-blond-35.vercel.app/" target="_blank" rel="noopener" class="panel contact reveal" data-corners="" data-cx-done="1">
+            <span class="cico"><i class="fas fa-film" aria-hidden="true"></i></span>
+            <span class="clabel"><span class="lang-en">PORTFOLIO 2026</span><span class="lang-zh">作品集 2026</span></span>
+            <span class="cval">portfolio-2026-five-blond-35.vercel.app</span>
+          <i class="cx cx-tl" aria-hidden="true"></i><i class="cx cx-tr" aria-hidden="true"></i><i class="cx cx-bl" aria-hidden="true"></i><i class="cx cx-br" aria-hidden="true"></i></a>
+        </div>
+
+        <div class="cta reveal">
+          <h2 class="cta-title">
+            <span class="lang-en">LET'S <em>BUILD</em> SOMETHING</span>
+            <span class="lang-zh">一起<em>创造</em>点什么</span>
+          </h2>
+          <a href="mailto:xuzimojimmy@163.com" class="btn btn-solid">
+            <span class="lang-en">SEND EMAIL</span><span class="lang-zh">发送邮件</span>
+            <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer style="padding: 40px 0; text-align: center; font-size: 0.9rem; border-top: 1px solid var(--glass-border); margin-top: 20px;">
-    <p style="color: var(--text-dim);">© 2026 Zimo Xu. Designed & Engineered with Vibe Coding.</p>
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="hazard thin" aria-hidden="true"></div>
+    <div class="container">
+      <div class="foot-inner">
+        <span class="sq" aria-hidden="true"></span>
+        <span>© 2026 ZIMO XU</span>
+      </div>
+    </div>
   </footer>
 
   <script>
-    function toggleLang() {
-      const body = document.body;
-      const btn = document.getElementById('lang-btn');
-      const current = body.getAttribute('data-lang');
-      const target = current === 'zh' ? 'en' : 'zh';
-      
-      body.setAttribute('data-lang', target);
-      btn.textContent = target === 'zh' ? 'EN' : '中文';
-      localStorage.setItem('pref_lang', target);
-    }
+    var lang = document.body.getAttribute('data-lang');
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+    /* ============ 角标注入 corner brackets ============ */
+    function injectCorners(scope) {
+      var els = (scope || document).querySelectorAll('[data-corners]:not([data-cx-done])');
+      Array.prototype.forEach.call(els, function (el) {
+        el.setAttribute('data-cx-done', '1');
+        ['tl', 'tr', 'bl', 'br'].forEach(function (pos) {
+          var i = document.createElement('i');
+          i.className = 'cx cx-' + pos;
+          i.setAttribute('aria-hidden', 'true');
+          el.appendChild(i);
+        });
       });
-    }, { threshold: 0.05 });
-
-    document.querySelectorAll('.section').forEach(s => observer.observe(s));
-
-    window.onload = () => {
-      const saved = localStorage.getItem('pref_lang') || 'zh';
-      document.body.setAttribute('data-lang', saved);
-      document.getElementById('lang-btn').textContent = saved === 'zh' ? 'EN' : '中文';
     }
+
+    /* ============ 语言切换 language ============ */
+    function toggleLang() {
+      lang = lang === 'zh' ? 'en' : 'zh';
+      document.body.setAttribute('data-lang', lang);
+      document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
+      try { localStorage.setItem('pref_lang', lang); } catch (e) {}
+    }
+
+    /* ============ 主题切换 theme ============ */
+    function applyTheme(t) {
+      document.documentElement.setAttribute('data-theme', t);
+      var icon = document.getElementById('themeIcon');
+      if (icon) icon.className = t === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute('content', t === 'dark' ? '#0b0d12' : '#e9e4d6');
+    }
+    function toggleTheme() {
+      var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      applyTheme(t);
+      try { localStorage.setItem('pref_theme', t); } catch (e) {}
+    }
+
+    /* ============ 懒加载视频 iframe lazy iframes ============ */
+    function setupLazyFrames() {
+      var frames = document.querySelectorAll('.video-frame[data-src]');
+      if (!('IntersectionObserver' in window)) {
+        Array.prototype.forEach.call(frames, function (f) { mountFrame(f); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { mountFrame(en.target); io.unobserve(en.target); }
+        });
+      }, { rootMargin: '320px 0px' });
+      Array.prototype.forEach.call(frames, function (f) { io.observe(f); });
+    }
+    function mountFrame(f) {
+      var iframe = document.createElement('iframe');
+      iframe.src = f.getAttribute('data-src');
+      iframe.setAttribute('allowfullscreen', '');
+      iframe.setAttribute('allow', 'fullscreen; encrypted-media; picture-in-picture');
+      iframe.setAttribute('scrolling', 'no');
+      f.innerHTML = '';
+      f.appendChild(iframe);
+    }
+
+    /* ============ 入场动画 reveal on scroll ============ */
+    function setupReveal() {
+      var els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) {
+        Array.prototype.forEach.call(els, function (el) { el.classList.add('in'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+      Array.prototype.forEach.call(els, function (el) { io.observe(el); });
+    }
+
+    /* ============ 初始化 init ============ */
+    (function init() {
+      // 默认英语 + 深色（除非本地记忆）
+      var savedLang = null, savedTheme = null;
+      try { savedLang = localStorage.getItem('pref_lang'); savedTheme = localStorage.getItem('pref_theme'); } catch (e) {}
+      lang = savedLang === 'zh' ? 'zh' : 'en';
+      document.body.setAttribute('data-lang', lang);
+      document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
+      applyTheme(savedTheme === 'light' ? 'light' : 'dark');
+
+      injectCorners(document);
+      setupLazyFrames();
+      setupReveal();
+    })();
   </script>
-</body>
-</html>
+
+
+</body></html>
