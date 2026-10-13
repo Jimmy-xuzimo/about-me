@@ -63,7 +63,15 @@ python -m http.server 8000
 
 ## 部署
 
-纯静态站点，可部署至 Vercel、GitHub Pages、Netlify 等任意静态托管平台。
+个人主页长期托管在 **GitHub Pages**：
+
+**https://jimmy-xuzimo.github.io/about-me/**
+
+Pages 从 `main` 分支的根目录 `/` 自动发布。修改 `index.html` 或 `images/` 并推送到 `main` 后，GitHub 会自动部署，通常需要几分钟。
+
+根目录的 `.nojekyll` 用于直接发布静态文件，无需安装依赖或运行构建命令。只要仓库和 Pages 保持启用，此地址就可以持续用于分享。
+
+页面中的作品集链接是另一个 Vercel 项目，不属于本仓库的 Pages 部署。GitHub Pages 在不同地区和网络的访问情况可能有差异。
 
 > 部署时请连同 `images/` 目录一起上传，否则图片将无法显示。
 
