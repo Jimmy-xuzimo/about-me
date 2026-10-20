@@ -16,6 +16,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Chakra+Petch:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
 
+  <script>
+    // Resolve the device palette before first paint; each visit starts with an outward reveal.
+    document.documentElement.classList.add('js');
+    document.documentElement.dataset.theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  </script>
   <style>
     /* ============ TOKENS · 工业废土 INDUSTRIAL WASTELAND ============ */
     :root {
@@ -26,7 +31,7 @@
       --ease: cubic-bezier(0.19, 1, 0.22, 1);
     }
 
-    html[data-theme="dark"] {
+    :is(html, .theme-snapshot)[data-theme="dark"] {
       --bg: #0b0d12;
       --bg-soft: #0f121a;
       --surface: #13161f;
@@ -49,7 +54,7 @@
       color-scheme: dark;
     }
 
-    html[data-theme="light"] {
+    :is(html, .theme-snapshot)[data-theme="light"] {
       --bg: #e9e4d6;
       --bg-soft: #efeadd;
       --surface: #f4f0e5;
@@ -130,6 +135,8 @@
     .brand em { font-style: normal; color: var(--orange); }
     .nav {
       display: flex; align-items: center; gap: 2px; margin-inline: auto;
+      position: absolute; left: 50%; transform: translateX(-50%);
+      max-width: calc(100% - clamp(240px, 32vw, 320px));
       overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;
     }
     .nav::-webkit-scrollbar { display: none; }
@@ -169,7 +176,7 @@
     .btn-ghost:hover { border-color: var(--orange); color: var(--orange); transform: translateY(-2px); }
     .btn-blue { border: 1px solid rgba(69, 184, 245, 0.5); color: var(--blue); background: var(--blue-soft); }
     .btn-blue:hover { border-color: var(--blue); transform: translateY(-2px); }
-    html[data-theme="light"] .btn-blue { border-color: rgba(32, 119, 182, 0.45); }
+    :is(html, .theme-snapshot)[data-theme="light"] .btn-blue { border-color: rgba(32, 119, 182, 0.45); }
 
     .chip {
       display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px;
@@ -181,8 +188,8 @@
     .chip i { font-size: 10px; }
     .chip.o { color: var(--orange); border-color: rgba(255, 122, 28, 0.45); background: var(--orange-soft); }
     .chip.b { color: var(--blue); border-color: rgba(69, 184, 245, 0.45); background: var(--blue-soft); }
-    html[data-theme="light"] .chip.o { border-color: rgba(214, 88, 12, 0.45); }
-    html[data-theme="light"] .chip.b { border-color: rgba(32, 119, 182, 0.45); }
+    :is(html, .theme-snapshot)[data-theme="light"] .chip.o { border-color: rgba(214, 88, 12, 0.45); }
+    :is(html, .theme-snapshot)[data-theme="light"] .chip.b { border-color: rgba(32, 119, 182, 0.45); }
 
     /* ============ 警示条 HAZARD ============ */
     .hazard {
@@ -290,7 +297,7 @@
       transition: border-color 0.28s, transform 0.28s, box-shadow 0.28s;
     }
     .panel:hover { border-color: rgba(255, 122, 28, 0.38); }
-    html[data-theme="light"] .panel:hover { border-color: rgba(214, 88, 12, 0.38); }
+    :is(html, .theme-snapshot)[data-theme="light"] .panel:hover { border-color: rgba(214, 88, 12, 0.38); }
     a.panel { text-decoration: none; display: block; }
     a.panel:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
     .panel-pad { padding: clamp(22px, 3.2vw, 36px); }
@@ -368,7 +375,7 @@
     }
     .tag:hover { border-color: var(--orange); color: var(--orange); transform: translateY(-2px); }
     .tag.ai { border-color: rgba(255, 122, 28, 0.42); background: var(--orange-soft); color: var(--orange); }
-    html[data-theme="light"] .tag.ai { border-color: rgba(214, 88, 12, 0.42); }
+    :is(html, .theme-snapshot)[data-theme="light"] .tag.ai { border-color: rgba(214, 88, 12, 0.42); }
 
     /* ============ 03 OPEN SOURCE ============ */
     .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2.2vw, 24px); }
@@ -407,7 +414,7 @@
       padding: 9px 15px; font-family: var(--font-mono); font-weight: 700; font-size: 11px;
       letter-spacing: 0.1em; text-transform: uppercase;
     }
-    html[data-theme="light"] .award { border-color: rgba(214, 88, 12, 0.45); }
+    :is(html, .theme-snapshot)[data-theme="light"] .award { border-color: rgba(214, 88, 12, 0.45); }
     .press { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.08em; color: var(--ink-faint); line-height: 1.9; text-transform: uppercase; }
 
     /* 精选大图 works showcase */
@@ -419,7 +426,7 @@
       height: 100%; display: flex; flex-direction: column;
     }
     .works-showcase a:hover .photo-frame { border-color: rgba(255, 122, 28, 0.45); transform: translateY(-3px); }
-    html[data-theme="light"] .works-showcase a:hover .photo-frame { border-color: rgba(214, 88, 12, 0.45); }
+    :is(html, .theme-snapshot)[data-theme="light"] .works-showcase a:hover .photo-frame { border-color: rgba(214, 88, 12, 0.45); }
     .photo-frame img { width: 100%; height: auto; display: block; transition: transform 0.45s var(--ease), filter 0.3s; }
     .works-showcase a:hover .photo-frame img { transform: scale(1.03); }
     .photo-cap {
@@ -506,6 +513,7 @@
     .contact:hover .cico { background: var(--orange); color: var(--orange-ink); border-color: var(--orange); }
     .contact .clabel { font-family: var(--font-mono); font-weight: 600; font-size: 10px; letter-spacing: 0.16em; color: var(--ink-faint); text-transform: uppercase; }
     .contact .cval {
+      display: inline-block;
       font-family: var(--font-head); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.02em;
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;
       margin-top: auto; align-self: stretch;
@@ -535,8 +543,8 @@
     .foot-inner a:hover { color: var(--orange); }
 
     /* ============ 入场动画 REVEAL ============ */
-    .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
-    .reveal.in { opacity: 1; transform: translateY(0); }
+    .js .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+    .js .reveal.in { opacity: 1; transform: translateY(0); }
     .d1 { transition-delay: 0.08s; } .d2 { transition-delay: 0.16s; } .d3 { transition-delay: 0.24s; }
 
     /* ============ 响应式 RESPONSIVE ============ */
@@ -582,11 +590,72 @@
       .container { max-width: 1400px; }
     }
 
+
+    /* Motion uses the existing orange / blue industrial palette. */
+    #portfolio { margin-top: clamp(16px, 2.2vw, 24px); scroll-margin-top: 78px; }
+    .hero-grid > *, .profile-grid > *, .skill-grid > *, .proj-grid > *,
+    .film-grid > *, .contact-grid > *, .vcg > * { min-width: 0; }
+    .controls { margin-left: auto; }
+    .tag, .chip { max-width: 100%; }
+    .sec-head { flex-wrap: wrap; }
+    .sec-title, .proj h3 { overflow-wrap: anywhere; }
+    .foot-inner a { overflow-wrap: anywhere; min-width: 0; }
+    .tbtn:focus-visible, a:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+    .tbtn:active, .btn:active { transform: translateY(1px); }
+    .panel.reveal { transition-property: opacity, transform, border-color, box-shadow; }
+    .panel.reveal.in { transition-delay: 0s; }
+    .photo-frame img, .pf-bg img { transition: transform .65s var(--ease); }
+    @media (hover: hover) and (pointer: fine) {
+      .panel.reveal.in:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+      .panel:hover .cx { width: 20px; height: 20px; opacity: 1; }
+      .tag:hover, .chip:hover { transform: translateY(-2px); border-color: var(--orange); }
+      .works-showcase a:hover img, .pf-card:hover .pf-bg img { transform: scale(1.035); }
+    }
+    @media (max-width: 480px) {
+      .sec-meta { width: 100%; padding-left: 30px; white-space: normal; }
+      .pf-stat { padding: 10px 12px; }
+      .btn { max-width: 100%; letter-spacing: .08em; }
+      .pf-body h3 { font-size: clamp(1.5rem, 7vw, 2rem); }
+    }
+    @media (pointer: coarse) {
+      .tbtn { min-height: 44px; min-width: 44px; }
+      .film-open { min-height: 44px; }
+    }
+    @media (orientation: landscape) and (max-height: 640px) and (max-width: 680px) {
+      .hero-grid { grid-template-columns: 1fr; }
+    }
+    html.theme-changing *, html.theme-changing *::before, html.theme-changing *::after {
+      /* Suppress palette fades without cancelling an unfinished entrance transition. */
+      transition-property: opacity, transform !important;
+    }
+    html.theme-changing .hud::before,
+    html.theme-changing .hud-status::before,
+    html.theme-changing .vf .rec::before { animation-play-state: paused; }
+    ::view-transition-group(root) { animation: none; }
+    ::view-transition-old(root), ::view-transition-new(root) {
+      animation: none; mix-blend-mode: normal;
+    }
+    ::view-transition-old(root) { z-index: 1; }
+    ::view-transition-new(root) { z-index: 2; }
+    html.theme-contract::view-transition-old(root) { z-index: 2; }
+    html.theme-contract::view-transition-new(root) { z-index: 1; }
+    @keyframes theme-circle {
+      from { clip-path: var(--theme-small); }
+      to { clip-path: var(--theme-large); }
+    }
+    html.theme-changing:not(.theme-contract)::view-transition-new(root) {
+      animation: theme-circle 650ms cubic-bezier(.65,0,.35,1) both;
+    }
+    html.theme-changing.theme-contract::view-transition-old(root) {
+      animation: theme-circle 650ms cubic-bezier(.65,0,.35,1) both reverse;
+    }
+    .theme-snapshot { position: fixed; inset: 0; overflow: hidden; z-index: 10000; pointer-events: none; contain: paint; }
+
     /* ============ 降低动效 REDUCED MOTION ============ */
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after { animation: none !important; transition: none !important; }
-      .reveal { opacity: 1; transform: none; }
+      .js .reveal { opacity: 1; transform: none; }
     }
   </style>
 </head>
@@ -617,7 +686,7 @@
   <!-- ============ HERO ============ -->
   <section class="hero" id="top">
     <div class="container hero-grid">
-      <div class="hero-left">
+      <div class="hero-left reveal">
         <div class="hero-eyebrow">
           <span class="lang-en">AI × FULL-STACK × VISUAL ARTS // SYS.2026</span>
           <span class="lang-zh">AI × 全栈开发 × 视觉创造 // 系统.2026</span>
@@ -651,7 +720,7 @@
         </div>
       </div>
 
-      <aside class="hero-right">
+      <aside class="hero-right reveal d1">
         <div class="hud" data-corners="" data-cx-done="1">
           <div class="hud-head">
             <span class="id">ID://<em>XU·ZIMO</em></span>
@@ -679,14 +748,14 @@
     <!-- ============ 01 PROFILE ============ -->
     <section class="section" id="profile">
       <div class="container">
-        <div class="sec-head reveal in">
+        <div class="sec-head reveal ">
           <span class="sec-no">01</span>
           <h2 class="sec-title"><span class="lang-en">Profile</span><span class="lang-zh">个人档案</span></h2>
           <span class="sec-meta">// BIO.LOG</span>
         </div>
 
         <div class="profile-grid">
-          <div class="panel panel-pad about reveal in" data-corners="" data-cx-done="1">
+          <div class="panel panel-pad about reveal " data-corners="" data-cx-done="1">
             <div class="panel-tag"><span class="lang-en">About Me</span><span class="lang-zh">关于我</span></div>
             <h3><span class="lang-en">Geek engineer's mind, photographer's eye.</span><span class="lang-zh">极客的工程思维，摄影师之眼。</span></h3>
             <p>
@@ -708,7 +777,7 @@
             </div>
           <i class="cx cx-tl" aria-hidden="true"></i><i class="cx cx-tr" aria-hidden="true"></i><i class="cx cx-bl" aria-hidden="true"></i><i class="cx cx-br" aria-hidden="true"></i></div>
 
-          <div class="panel panel-pad reveal d1 in" data-corners="" data-cx-done="1">
+          <div class="panel panel-pad reveal d1 " data-corners="" data-cx-done="1">
             <div class="panel-tag"><span class="lang-en">Timeline</span><span class="lang-zh">成长时间轴</span></div>
             <div class="tl">
               <div class="tl-item">
@@ -736,14 +805,14 @@
     <!-- ============ 02 SKILLS ============ -->
     <section class="section" id="skills">
       <div class="container">
-        <div class="sec-head reveal in">
+        <div class="sec-head reveal ">
           <span class="sec-no">02</span>
           <h2 class="sec-title"><span class="lang-en">Skill Matrix</span><span class="lang-zh">技能矩阵</span></h2>
           <span class="sec-meta">// SKILL.MTX</span>
         </div>
 
         <div class="skill-grid">
-          <div class="panel panel-pad skill-lead reveal in" data-corners="" data-cx-done="1">
+          <div class="panel panel-pad skill-lead reveal " data-corners="" data-cx-done="1">
             <div class="panel-tag"><span class="lang-en">Core Drive Engine</span><span class="lang-zh">核心驱动引擎</span></div>
             <p class="big"><span class="lang-en">Vibe Coding — building at the speed of thought.</span><span class="lang-zh">Vibe Coding——以思维的速度构建。</span></p>
             <p style="margin-top: 10px;">
@@ -756,11 +825,11 @@
             </div>
           <i class="cx cx-tl" aria-hidden="true"></i><i class="cx cx-tr" aria-hidden="true"></i><i class="cx cx-bl" aria-hidden="true"></i><i class="cx cx-br" aria-hidden="true"></i></div>
 
-          <div class="panel panel-pad reveal d1 in" data-corners="" data-cx-done="1">
+          <div class="panel panel-pad reveal d1 " data-corners="" data-cx-done="1">
             <div class="tag-cat">
               <h4><span class="lang-en">AI MODELS</span><span class="lang-zh">AI 模型</span><span class="zh-sub lang-zh">// 大语言模型</span></h4>
               <div class="tags">
-                <span class="tag ai">Gemini</span><span class="tag ai">ChatGPT</span><span class="tag ai">Claude</span><span class="tag ai">Kimi</span>
+                <span class="tag ai">ChatGPT</span><span class="tag ai">Claude</span><span class="tag ai">DeepSeek</span><span class="tag ai">Kimi</span>
               </div>
             </div>
             <div class="tag-cat">
@@ -772,7 +841,7 @@
             <div class="tag-cat">
               <h4><span class="lang-en">SOFTWARE &amp; INFRA</span><span class="lang-zh">软件与基建</span></h4>
               <div class="tags">
-                <span class="tag">Cursor</span><span class="tag">Trae</span><span class="tag">Google AI Studio</span><span class="tag"><span class="lang-en">Feiniu NAS</span><span class="lang-zh">飞牛 NAS</span></span>
+                <span class="tag">Codex</span><span class="tag">Claude Desktop</span><span class="tag">OpenCode</span>
               </div>
             </div>
           <i class="cx cx-tl" aria-hidden="true"></i><i class="cx cx-tr" aria-hidden="true"></i><i class="cx cx-bl" aria-hidden="true"></i><i class="cx cx-br" aria-hidden="true"></i></div>
@@ -806,15 +875,15 @@
             </div>
           <i class="cx cx-tl" aria-hidden="true"></i><i class="cx cx-tr" aria-hidden="true"></i><i class="cx cx-bl" aria-hidden="true"></i><i class="cx cx-br" aria-hidden="true"></i></a>
 
-          <a href="https://github.com/Jimmy-xuzimo/gaokao-vocab" target="_blank" rel="noopener" class="panel panel-pad proj reveal d1" data-corners="" data-cx-done="1">
+          <a href="https://github.com/Jimmy-xuzimo/vidown" target="_blank" rel="noopener" class="panel panel-pad proj reveal d1" data-corners="" data-cx-done="1">
             <div class="proj-top">
-              <h3>gaokao-vocab</h3>
+              <h3>Vidown</h3>
               <span class="proj-mod">MOD.03-B</span>
             </div>
-            <span class="proj-stars"><i class="fas fa-book" aria-hidden="true"></i>3817 <span class="lang-en" style="color: var(--ink-faint); font-weight: 600;">WORDS</span><span class="lang-zh" style="color: var(--ink-faint); font-weight: 600;">词</span></span>
+            <span class="proj-stars"><i class="fas fa-download" aria-hidden="true"></i><span class="lang-en">VIDEO DOWNLOADER</span><span class="lang-zh">视频下载工具</span></span>
             <p>
-              <span class="lang-en">Independently built vocabulary app for Gaokao with 3,817 words — flashcards, daily quizzes and learning-data visualization.</span>
-              <span class="lang-zh">独立开发的高考词汇学习应用，内置 3817 词，支持单词卡片、每日测验与学习数据可视化。</span>
+              <span class="lang-en">An open-source video downloader with a streamlined interface for saving online videos.</span>
+              <span class="lang-zh">开源视频下载工具，以简洁直观的界面，让在线视频下载更便捷。</span>
             </p>
             <div class="chip-row">
               <span class="chip"><span class="lang-en">PERSONAL PROJECT</span><span class="lang-zh">个人项目</span></span>
@@ -900,26 +969,7 @@
           </a>
         </div>
 
-        <div class="cta-bar reveal d2" style="margin-top: clamp(16px, 2.2vw, 24px);">
-          <span class="cb-txt"><b>+148</b> <span class="lang-en">MORE WORKS IN THE PORTFOLIO</span><span class="lang-zh">更多作品收录于作品集</span></span>
-          <a href="https://portfolio-2026-five-blond-35.vercel.app/" target="_blank" rel="noopener" class="btn btn-solid">
-            <span class="lang-en">OPEN PORTFOLIO</span><span class="lang-zh">进入作品集</span>
-            <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ 05 PORTFOLIO 2026 ============ -->
-    <section class="section" id="portfolio">
-      <div class="container">
-        <div class="sec-head reveal">
-          <span class="sec-no">05</span>
-          <h2 class="sec-title"><span class="lang-en">Portfolio 2026</span><span class="lang-zh">2026 作品集</span></h2>
-          <span class="sec-meta">// WORK.2026</span>
-        </div>
-
-        <div class="panel pf-card reveal" data-corners="" data-cx-done="1">
+        <div class="panel pf-card reveal" id="portfolio" data-corners="" data-cx-done="1">
           <div class="pf-bg">
             <img src="images/cover_01.jpg" alt="Portfolio 2026 cover / 作品集封面" loading="lazy" decoding="async">
           </div>
@@ -959,7 +1009,7 @@
     <section class="section" id="films">
       <div class="container">
         <div class="sec-head reveal">
-          <span class="sec-no">06</span>
+          <span class="sec-no">05</span>
           <h2 class="sec-title"><span class="lang-en">Film Archive</span><span class="lang-zh">影像档案</span></h2>
           <span class="sec-meta">// FILM.DB · BILIBILI</span>
         </div>
@@ -1016,7 +1066,7 @@
     <section class="section" id="contact">
       <div class="container">
         <div class="sec-head reveal">
-          <span class="sec-no">07</span>
+          <span class="sec-no">06</span>
           <h2 class="sec-title"><span class="lang-en">Contact</span><span class="lang-zh">联系方式</span></h2>
           <span class="sec-meta">// COMM.LINK</span>
         </div>
@@ -1073,7 +1123,6 @@
     <div class="hazard thin" aria-hidden="true"></div>
     <div class="container">
       <div class="foot-inner">
-        <span class="sq" aria-hidden="true"></span>
         <span>© 2026 ZIMO XU</span>
       </div>
     </div>
@@ -1108,15 +1157,143 @@
     function applyTheme(t) {
       document.documentElement.setAttribute('data-theme', t);
       var icon = document.getElementById('themeIcon');
-      if (icon) icon.className = t === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+      if (icon) {
+        icon.className = '';
+        icon.innerHTML = t === 'dark'
+          ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 1v2m0 18v2M1 12h2m18 0h2M4.2 4.2l1.4 1.4m12.8 12.8 1.4 1.4M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>'
+          : '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 14.1A9 9 0 0 1 9.9 3a9 9 0 1 0 11.1 11.1Z"/></svg>';
+        icon.style.display = 'inline-flex';
+      }
       var meta = document.querySelector('meta[name="theme-color"]');
       if (meta) meta.setAttribute('content', t === 'dark' ? '#0b0d12' : '#e9e4d6');
     }
-    function toggleTheme() {
-      var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      applyTheme(t);
-      try { localStorage.setItem('pref_theme', t); } catch (e) {}
+    var themeClicks = 0, themeBusy = false, themeManuallySet = false, pendingReveals = [];
+    var deviceTheme = matchMedia('(prefers-color-scheme: dark)');
+    function snapshotTheme(theme) {
+      var layer = document.createElement('div');
+      layer.className = 'theme-snapshot';
+      layer.dataset.theme = theme;
+      layer.setAttribute('aria-hidden', 'true');
+      layer.inert = true;
+      // Build a single snapshot without constructing any iframe or running its player.
+      function copyStatic(node) {
+        if (node.nodeType === 1) {
+          if (node.matches('script, .theme-snapshot')) return null;
+          if (node.tagName === 'IFRAME') {
+            var placeholder = document.createElement('div');
+            placeholder.style.cssText = 'position:absolute;inset:0;background:#05060a';
+            return placeholder;
+          }
+        }
+        var copy = node.cloneNode(false);
+        if (copy.nodeType === 1) {
+          if (copy.id === 'portfolio') copy.style.marginTop = getComputedStyle(node).marginTop;
+          if (node.classList.contains('reveal')) {
+            // A new DOM clone has no transition history: preserve the live entrance frame.
+            var appearance = getComputedStyle(node);
+            copy.style.opacity = appearance.opacity;
+            copy.style.transform = appearance.transform;
+            copy.style.transition = 'none';
+          }
+          copy.removeAttribute('id');
+          Array.from(copy.attributes).forEach(function (attribute) {
+            if (/^on/i.test(attribute.name)) copy.removeAttribute(attribute.name);
+          });
+        }
+        for (var child = node.firstChild; child; child = child.nextSibling) {
+          var childCopy = copyStatic(child);
+          if (childCopy) copy.appendChild(childCopy);
+        }
+        return copy;
+      }
+      var clone = copyStatic(document.body);
+      clone.style.cssText += ';position:absolute;left:0;right:0;top:' + (-scrollY) + 'px;margin:0;';
+      var bar = clone.querySelector('.topbar');
+      bar.style.position = 'absolute'; bar.style.top = scrollY + 'px';
+      var icon = clone.querySelector('.controls button:last-child i');
+      if (icon) {
+        icon.innerHTML = theme === 'dark'
+          ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 1v2m0 18v2M1 12h2m18 0h2M4.2 4.2l1.4 1.4m12.8 12.8 1.4 1.4M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>'
+          : '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M21 14.1A9 9 0 0 1 9.9 3a9 9 0 1 0 11.1 11.1Z"/></svg>';
+      }
+      layer.appendChild(clone);
+      document.body.appendChild(layer);
+      return layer;
     }
+    async function toggleTheme() {
+      if (themeBusy) return;
+      themeBusy = true;
+      themeManuallySet = true;
+      var root = document.documentElement;
+      var current = root.dataset.theme;
+      var next = current === 'dark' ? 'light' : 'dark';
+      var expand = themeClicks++ % 2 === 0;
+      var rect = document.getElementById('themeBtn').getBoundingClientRect();
+      var x = rect.left + rect.width / 2, y = rect.top + rect.height / 2;
+      var radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y)) + 4;
+      var small = 'circle(0px at ' + x + 'px ' + y + 'px)';
+      var large = 'circle(' + radius + 'px at ' + x + 'px ' + y + 'px)';
+      var snapshot = null, animation = null, transition = null;
+      var pausedReveals = document.getAnimations().filter(function (motion) {
+        return motion.playState === 'running' && motion.effect && motion.effect.target &&
+          motion.effect.target.classList.contains('reveal') &&
+          (motion.transitionProperty === 'opacity' || motion.transitionProperty === 'transform');
+      });
+      pausedReveals.forEach(function (motion) { motion.pause(); });
+      root.style.setProperty('--theme-small', small);
+      root.style.setProperty('--theme-large', large);
+      root.classList.add('theme-changing');
+      root.classList.toggle('theme-contract', !expand);
+      document.getElementById('themeBtn').setAttribute('aria-busy', 'true');
+      try {
+        // Complete pending pause operations before either old/new snapshot is captured.
+        await Promise.all(pausedReveals.map(function (motion) { return motion.ready; }));
+        if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          applyTheme(next);
+        } else if (document.startViewTransition) {
+          // The browser owns the pseudo-element CSS animation and releases it with the snapshot.
+          // Do not create persistent, fill-forwards Web Animations on the document root.
+          transition = document.startViewTransition(function () { applyTheme(next); });
+          await transition.ready;
+          await transition.finished;
+        } else {
+          // Expansion: reveal one new-theme snapshot over the live old theme.
+          // Contraction: shrink one old-theme snapshot over the live new theme.
+          snapshot = snapshotTheme(expand ? next : current);
+          if (!expand) applyTheme(next);
+          animation = snapshot.animate({ clipPath: expand ? [small, large] : [large, small] }, {
+            duration: 650, easing: 'cubic-bezier(.65,0,.35,1)', fill: 'both'
+          });
+          await animation.finished;
+          applyTheme(next);
+        }
+      } catch (error) {
+        if (transition) transition.skipTransition();
+        applyTheme(next);
+      } finally {
+        // Commit the new palette while transitions are still disabled. Otherwise the browser
+        // can coalesce this change with class cleanup and start hundreds of color transitions.
+        void root.offsetWidth;
+        // Explicitly release fallback animation and DOM even on cancellation or failed capture.
+        if (animation) animation.cancel();
+        if (snapshot) snapshot.remove();
+        root.style.removeProperty('--theme-small');
+        root.style.removeProperty('--theme-large');
+        root.classList.remove('theme-changing', 'theme-contract');
+        document.getElementById('themeBtn').removeAttribute('aria-busy');
+        themeBusy = false;
+        pausedReveals.forEach(function (motion) {
+          if (motion.playState === 'paused') motion.play();
+        });
+        pendingReveals.forEach(function (el) { el.classList.add('in'); });
+        pendingReveals = [];
+      }
+    }
+    function followDeviceTheme(event) {
+      if (!themeManuallySet) applyTheme(event.matches ? 'dark' : 'light');
+    }
+    if (deviceTheme.addEventListener) deviceTheme.addEventListener('change', followDeviceTheme);
+    else if (deviceTheme.addListener) deviceTheme.addListener(followDeviceTheme);
 
     /* ============ 懒加载视频 iframe lazy iframes ============ */
     function setupLazyFrames() {
@@ -1151,7 +1328,11 @@
       }
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
-          if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+          if (en.isIntersecting) {
+            if (themeBusy) pendingReveals.push(en.target);
+            else en.target.classList.add('in');
+            io.unobserve(en.target);
+          }
         });
       }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
       Array.prototype.forEach.call(els, function (el) { io.observe(el); });
@@ -1159,13 +1340,13 @@
 
     /* ============ 初始化 init ============ */
     (function init() {
-      // 默认英语 + 深色（除非本地记忆）
-      var savedLang = null, savedTheme = null;
-      try { savedLang = localStorage.getItem('pref_lang'); savedTheme = localStorage.getItem('pref_theme'); } catch (e) {}
+      // 保留原语言偏好；每次打开优先跟随设备颜色模式。
+      var savedLang = null;
+      try { savedLang = localStorage.getItem('pref_lang'); } catch (e) {}
       lang = savedLang === 'zh' ? 'zh' : 'en';
       document.body.setAttribute('data-lang', lang);
       document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
-      applyTheme(savedTheme === 'light' ? 'light' : 'dark');
+      applyTheme(deviceTheme.matches ? 'dark' : 'light');
 
       injectCorners(document);
       setupLazyFrames();
